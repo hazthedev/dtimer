@@ -29,17 +29,17 @@ const whatsappLink = `https://wa.me/${whatsappNumber}?text=Hi%20D'Timer%20Cafe!%
         {navLinks.map(link => (
           <a
             href={link.href}
-            class="text-sm font-medium text-tea-brown hover:text-sambal-red transition-colors relative group"
+            class="text-sm font-medium text-tea-brown hover:text-sambal-red transition-colors duration-300 ease-out relative group"
           >
             {link.label}
-            <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-sambal-red transition-all duration-300 group-hover:w-full" />
+            <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-sambal-red transition-[width] duration-500 ease-[cubic-bezier(0.25,0.46,0.45,0.94)] group-hover:w-full" />
           </a>
         ))}
         <a
           href={whatsappLink}
           target="_blank"
           rel="noopener noreferrer"
-          class="inline-flex items-center gap-2 bg-sambal-red text-bone-white px-5 py-2.5 rounded-lg text-sm font-medium hover:bg-charred-brown transition-colors"
+          class="inline-flex items-center gap-2 bg-sambal-red text-bone-white px-5 py-2.5 rounded-lg text-sm font-medium hover:bg-charred-brown hover:-translate-y-0.5 hover:shadow-md transition-all ease-out duration-300"
         >
           <Phone size={16} />
           <span>WhatsApp</span>

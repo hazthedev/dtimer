@@ -116,13 +116,13 @@ export default function MenuTabs() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: index * 0.05, duration: 0.4 }}
-                className="group bg-warm-sand rounded-xl overflow-hidden shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300 border border-coconut-cream/50"
+                className="group bg-warm-sand rounded-xl overflow-hidden shadow-sm border border-coconut-cream/50 will-change-transform hover:-translate-y-1.5 hover:shadow-xl transition-transform transition-shadow ease-out duration-300 hover:duration-500"
               >
                 <div className="relative aspect-[4/3] overflow-hidden bg-coconut-cream">
                   <img
                     src={item.image}
                     alt={item.name}
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform ease-out duration-700"
                     loading="lazy"
                     onError={e => {
                       (e.target as HTMLImageElement).src = 'https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=600&q=80';

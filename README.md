@@ -84,6 +84,10 @@ public/
 8. Vector logo files
 9. Catering package details
 
+## Deployment
+
+See [DEPLOY.md](./DEPLOY.md) for step-by-step Vercel deployment instructions.
+
 ## License
 
 Proprietary — built for D'Timer Cafe.
