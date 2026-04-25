@@ -63,28 +63,20 @@ const whatsappLink = `https://wa.me/${whatsappNumber}?text=Hi%20D'Timer%20Cafe!%
   <!-- Mobile Menu -->
   <div
     id="mobile-menu"
-    class="md:hidden fixed inset-x-0 top-16 bg-warm-sand/95 backdrop-blur-md border-b border-coconut-cream transform -translate-y-full transition-transform duration-300"
+    class="md:hidden fixed inset-x-0 top-16 bg-warm-sand/95 backdrop-blur-md border-b border-coconut-cream shadow-lg transform -translate-y-[120%] transition-transform duration-500 ease-[cubic-bezier(0.32,0.72,0,1)]"
     aria-hidden="true"
   >
     <Container>
-      <div class="py-6 flex flex-col gap-4">
-        {navLinks.map(link => (
+      <div class="py-6 flex flex-col">
+        {navLinks.map((link, index) => (
           <a
             href={link.href}
-            class="text-lg font-medium text-warm-black hover:text-sambal-red transition-colors py-2"
+            class="text-lg font-medium text-warm-black hover:text-sambal-red transition-colors duration-200 py-3 border-b border-coconut-cream/30 last:border-0"
+            style={`animation-delay: ${index * 40}ms`}
           >
             {link.label}
           </a>
         ))}
-        <a
-          href={whatsappLink}
-          target="_blank"
-          rel="noopener noreferrer"
-          class="inline-flex items-center justify-center gap-2 bg-sambal-red text-bone-white px-5 py-3 rounded-lg text-base font-medium hover:bg-charred-brown transition-colors mt-2"
-        >
-          <Phone size={18} />
-          <span>WhatsApp Us</span>
-        </a>
       </div>
     </Container>
   </div>
@@ -122,12 +114,12 @@ const whatsappLink = `https://wa.me/${whatsappNumber}?text=Hi%20D'Timer%20Cafe!%
     mobileMenu?.setAttribute('aria-hidden', String(!isMenuOpen));
 
     if (isMenuOpen) {
-      mobileMenu?.classList.remove('-translate-y-full');
+      mobileMenu?.classList.remove('-translate-y-[120%]');
       menuIcon?.classList.add('hidden');
       closeIcon?.classList.remove('hidden');
       navbar?.classList.add('bg-warm-sand/95');
     } else {
-      mobileMenu?.classList.add('-translate-y-full');
+      mobileMenu?.classList.add('-translate-y-[120%]');
       menuIcon?.classList.remove('hidden');
       closeIcon?.classList.add('hidden');
       handleScroll();
@@ -140,7 +132,7 @@ const whatsappLink = `https://wa.me/${whatsappNumber}?text=Hi%20D'Timer%20Cafe!%
       isMenuOpen = false;
       mobileMenuBtn?.setAttribute('aria-expanded', 'false');
       mobileMenu?.setAttribute('aria-hidden', 'true');
-      mobileMenu?.classList.add('-translate-y-full');
+      mobileMenu?.classList.add('-translate-y-[120%]');
       menuIcon?.classList.remove('hidden');
       closeIcon?.classList.add('hidden');
       handleScroll();
