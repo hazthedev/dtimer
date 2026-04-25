@@ -47,9 +47,13 @@ const siteUrl = 'https://dtimercafe.my';
     <meta name="twitter:description" content={description} />
     <meta name="twitter:image" content={`${siteUrl}${image}`} />
 
+    <!-- Preconnect for performance -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://www.google.com" />
+
     <!-- Favicon -->
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <link rel="apple-touch-icon" href="/favicon.ico" />
 
     <!-- JSON-LD Restaurant Schema -->
     <script type="application/ld+json" set:html={JSON.stringify({

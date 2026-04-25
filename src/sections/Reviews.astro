@@ -3,7 +3,6 @@ import Container from '../components/Container.astro';
 import SectionHeading from '../components/SectionHeading.astro';
 import FadeIn from '../components/FadeIn';
 import reviewsData from '../data/reviews.json';
-import { Star } from 'lucide-react';
 ---
 
 <section class="py-20 sm:py-28 bg-bone-white">
@@ -25,10 +24,18 @@ import { Star } from 'lucide-react';
           <article class="bg-warm-sand rounded-xl p-6 sm:p-8 h-full flex flex-col">
             <div class="flex gap-1">
               {Array.from({ length: 5 }).map((_, i) => (
-                <Star
-                  size={16}
-                  class={i < review.rating ? 'text-turmeric-gold fill-turmeric-gold' : 'text-coconut-cream'}
-                />
+                <svg
+                  width="16"
+                  height="16"
+                  viewBox="0 0 24 24"
+                  fill={i < review.rating ? '#D9A441' : 'none'}
+                  stroke={i < review.rating ? '#D9A441' : '#E5D5B8'}
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
+                </svg>
               ))}
             </div>
             <blockquote class="mt-4 text-base text-warm-black leading-relaxed flex-grow">
