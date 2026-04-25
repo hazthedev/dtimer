@@ -1,0 +1,56 @@
+---
+import Container from '../components/Container.astro';
+import FadeIn from '../components/FadeIn';
+---
+
+<section class="py-20 sm:py-28 bg-bone-white">
+  <Container>
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+      <FadeIn client:visible direction="left">
+        <div class="aspect-[4/3] rounded-2xl overflow-hidden bg-coconut-cream shadow-lg">
+          <img
+            src="/images/family/founder.jpg"
+            alt="D'Timer Cafe founders in the early years"
+            class="w-full h-full object-cover"
+            loading="lazy"
+            onerror="this.src='https://images.unsplash.com/photo-1559339352-11d035aa65de?w=800&q=80'"
+          />
+        </div>
+      </FadeIn>
+
+      <div>
+        <FadeIn client:visible direction="right">
+          <p class="text-xs sm:text-sm font-body font-medium tracking-[0.25em] uppercase text-sambal-red">
+            The Beginning
+          </p>
+        </FadeIn>
+
+        <FadeIn client:visible delay={0.15} direction="right">
+          <h2 class="mt-3 font-display text-3xl sm:text-4xl lg:text-5xl font-semibold text-warm-black leading-tight">
+            From a family kitchen to a neighbourhood institution.
+          </h2>
+        </FadeIn>
+
+        <FadeIn client:visible delay={0.3} direction="right">
+          <p class="mt-5 text-base sm:text-lg text-tea-brown leading-relaxed">
+            D'Timer Cafe opened its doors in 2008 with a simple mission: 
+            serve Johor cuisine in KL that actually tastes like home. 
+            The recipes came from family — the Laksa Johor broth from a grandmother's 
+            kitchen, the Nasi Ambeng from Eid gatherings, the Kacang Pool from 
+            weekend breakfasts in Johor Bahru.
+          </p>
+        </FadeIn>
+
+        <FadeIn client:visible delay={0.45} direction="right">
+          <p class="mt-4 text-base sm:text-lg text-tea-brown leading-relaxed">
+            Wangsa Maju was chosen because it was a growing neighbourhood 
+            full of young families and students — people who missed the 
+            flavours of the south but couldn't always make the trip home. 
+            Word spread. The lines grew. And seventeen years later, 
+            D'Timer is still run by the same family, still using the same recipes.
+          </p>
+        </FadeIn>
+      </div>
+    </div>
+  </Container>
+</section>

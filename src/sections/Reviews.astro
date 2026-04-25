@@ -1,0 +1,43 @@
+---
+import Container from '../components/Container.astro';
+import SectionHeading from '../components/SectionHeading.astro';
+import FadeIn from '../components/FadeIn';
+import reviewsData from '../data/reviews.json';
+import { Star } from 'lucide-react';
+---
+
+<section class="py-20 sm:py-28 bg-bone-white">
+  <Container>
+    <FadeIn client:visible>
+      <div class="text-center">
+        <p class="text-xs sm:text-sm font-body font-medium tracking-[0.25em] uppercase text-sambal-red">
+          What diners say
+        </p>
+        <h2 class="mt-3 font-display text-3xl sm:text-4xl lg:text-5xl font-semibold text-warm-black">
+          4.2 / 5 from 850+ diners on Google
+        </h2>
+      </div>
+    </FadeIn>
+
+    <div class="mt-14 grid grid-cols-1 md:grid-cols-3 gap-8">
+      {reviewsData.map((review, index) => (
+        <FadeIn client:visible delay={index * 0.15} key={review.name}>
+          <article class="bg-warm-sand rounded-xl p-6 sm:p-8 h-full flex flex-col">
+            <div class="flex gap-1">
+              {Array.from({ length: 5 }).map((_, i) => (
+                <Star
+                  size={16}
+                  class={i < review.rating ? 'text-turmeric-gold fill-turmeric-gold' : 'text-coconut-cream'}
+                />
+              ))}
+            </div>
+            <blockquote class="mt-4 text-base text-warm-black leading-relaxed flex-grow">
+              "{review.quote}"
+            </blockquote>
+            <p class="mt-6 text-sm font-medium text-tea-brown">— {review.name}</p>
+          </article>
+        </FadeIn>
+      ))}
+    </div>
+  </Container>
+</section>

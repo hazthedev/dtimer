@@ -1,0 +1,54 @@
+---
+import Container from '../components/Container.astro';
+import SectionHeading from '../components/SectionHeading.astro';
+import FadeIn from '../components/FadeIn';
+import { Fish, Leaf, Flame, ChefHat } from 'lucide-react';
+
+const recipes = [
+  {
+    icon: Fish,
+    title: 'Pekat Fish Broth',
+    description: 'Every Laksa Johor starts with a broth reduced for hours from fresh ikan parang and ikan kembung. No shortcuts, no powders. The result is thick, umami-rich, and unmistakably Johor.'
+  },
+  {
+    icon: Flame,
+    title: 'Three Sambal Variations',
+    description: 'Lontong Darat isn\'t one dish — it\'s three. Kuah sambal for heat lovers, kuah kacang for the nutty sweetness, and kacang pool for the bold bean stew tradition. Pick your way home.'
+  },
+  {
+    icon: Leaf,
+    title: 'Fresh Ingredients Daily',
+    description: 'Ulam is picked every morning. The rempah is pounded fresh. The ayam kicap is marinated overnight. You can taste the difference between "made today" and "made in bulk."'
+  },
+  {
+    icon: ChefHat,
+    title: 'Why the Rempah Matters',
+    description: 'The soul of Johor cooking is in the rempah — the spice paste that forms the base of nearly every dish. Our rempah recipe hasn\'t changed since 2008. It\'s toasted, ground, and cooked low and slow.'
+  }
+];
+---
+
+<section class="py-20 sm:py-28 bg-warm-sand">
+  <Container>
+    <FadeIn client:visible>
+      <SectionHeading
+        eyebrow="The Recipes"
+        headline="What makes Johor dishes authentic."
+      />
+    </FadeIn>
+
+    <div class="mt-14 grid grid-cols-1 sm:grid-cols-2 gap-8">
+      {recipes.map((recipe, index) => (
+        <FadeIn client:visible delay={index * 0.1} key={recipe.title}>
+          <article class="bg-bone-white rounded-xl p-6 sm:p-8 shadow-sm border border-coconut-cream/50 h-full">
+            <div class="w-12 h-12 rounded-lg bg-sambal-red/10 flex items-center justify-center">
+              <recipe.icon size={24} class="text-sambal-red" />
+            </div>
+            <h3 class="mt-5 font-display text-xl font-semibold text-warm-black">{recipe.title}</h3>
+            <p class="mt-3 text-sm sm:text-base text-tea-brown leading-relaxed">{recipe.description}</p>
+          </article>
+        </FadeIn>
+      ))}
+    </div>
+  </Container>
+</section>

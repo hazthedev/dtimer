@@ -1,0 +1,235 @@
+[
+  {
+    "category": "Johor Specialties",
+    "items": [
+      {
+        "name": "Laksa Johor",
+        "description": "Pekat fish broth. Spaghetti, not laksa noodles (yes, on purpose). Ulam, sambal belacan. The way they do it down south.",
+        "price": "RM18.90",
+        "image": "/images/dishes/laksa-johor.jpg",
+        "tags": ["halal", "signature", "spicy"],
+        "johorOriginal": true
+      },
+      {
+        "name": "Lontong Darat — Kuah Sambal",
+        "description": "Compressed rice cakes with rich, spicy sambal gravy. A Johor breakfast classic.",
+        "price": "RM19.90",
+        "image": "/images/dishes/lontong-darat-sambal.jpg",
+        "tags": ["halal", "spicy"],
+        "johorOriginal": true
+      },
+      {
+        "name": "Lontong Darat — Kuah Kacang",
+        "description": "The same lontong, draped in thick, nutty peanut gravy. Sweeter, creamier, equally authentic.",
+        "price": "RM19.90",
+        "image": "/images/dishes/lontong-darat-kacang.jpg",
+        "tags": ["halal"],
+        "johorOriginal": true
+      },
+      {
+        "name": "Lontong Darat — Kacang Pool",
+        "description": "The famous Johor bean stew over lontong. Some say the best Kacang Pool in KL.",
+        "price": "RM20.90",
+        "image": "/images/dishes/lontong-darat-pool.jpg",
+        "tags": ["halal"],
+        "johorOriginal": true
+      },
+      {
+        "name": "Nasi Ambeng Ayam Kicap",
+        "description": "Rice, ayam kicap, mee goreng, serunding, sayur — one plate, one tradition. Built to share, easier to finish.",
+        "price": "RM24.90",
+        "image": "/images/dishes/nasi-ambeng.jpg",
+        "tags": ["halal", "signature"],
+        "johorOriginal": true
+      },
+      {
+        "name": "Kacang Pool",
+        "description": "Johor specialty fava bean stew, slow-cooked with rempah and served with toasted bread.",
+        "price": "RM16.90",
+        "image": "/images/dishes/kacang-pool.jpg",
+        "tags": ["halal"],
+        "johorOriginal": true
+      }
+    ]
+  },
+  {
+    "category": "Nasi",
+    "items": [
+      {
+        "name": "Nasi Lemak Sotong",
+        "description": "Fragrant coconut rice with sambal sotong, cucumber, peanuts, and ikan bilis.",
+        "price": "RM19.90",
+        "image": "/images/dishes/nasi-lemak-sotong.jpg",
+        "tags": ["halal", "spicy"]
+      },
+      {
+        "name": "Nasi Lemak Ayam Goreng",
+        "description": "Classic nasi lemak with crispy fried chicken, sambal, and all the traditional fixings.",
+        "price": "RM18.90",
+        "image": "/images/dishes/nasi-lemak-ayam.jpg",
+        "tags": ["halal", "spicy"]
+      },
+      {
+        "name": "Nasi Briani Daging",
+        "description": "Fragrant basmati rice with tender spiced beef, acar, and curry gravy.",
+        "price": "RM25.90",
+        "image": "/images/dishes/nasi-briani-daging.jpg",
+        "tags": ["halal", "spicy"]
+      },
+      {
+        "name": "Nasi Briani Ayam Masak Merah",
+        "description": "Briani rice paired with sweet-tangy tomato chicken curry. A celebration on a plate.",
+        "price": "RM26.90",
+        "image": "/images/dishes/nasi-briani-merah.jpg",
+        "tags": ["halal", "spicy"]
+      }
+    ]
+  },
+  {
+    "category": "Mee",
+    "items": [
+      {
+        "name": "Mee Rebus",
+        "description": "Yellow noodles in thick, sweet-savoury gravy with bean curd, boiled egg, and greens.",
+        "price": "RM18.90",
+        "image": "/images/dishes/mee-rebus.jpg",
+        "tags": ["halal"]
+      },
+      {
+        "name": "Mee Bandung",
+        "description": "Noodles in rich tomato-chilli gravy with seafood and egg. Bold, red, unmistakably Johor.",
+        "price": "RM18.90",
+        "image": "/images/dishes/mee-bandung.jpg",
+        "tags": ["halal", "spicy"]
+      }
+    ]
+  },
+  {
+    "category": "Soto & Soup",
+    "items": [
+      {
+        "name": "Soto Ayam",
+        "description": "Fragrant turmeric chicken soup with rice cakes, bean sprouts, and sambal kicap.",
+        "price": "RM16.90",
+        "image": "/images/dishes/soto-ayam.jpg",
+        "tags": ["halal"]
+      },
+      {
+        "name": "Asam Pedas",
+        "description": "Tangy, spicy tamarind stew with fish and vegetables. A Johor-Melaka heritage dish.",
+        "price": "RM26.90",
+        "image": "/images/dishes/asam-pedas.jpg",
+        "tags": ["halal", "spicy"]
+      }
+    ]
+  },
+  {
+    "category": "Coffee",
+    "items": [
+      {
+        "name": "D'Timer Iced Coffee",
+        "description": "Brewed strong, mixed with condensed milk, served cold. Old-school Johor cafe tradition. Pairs with everything.",
+        "price": "RM6.90",
+        "image": "/images/dishes/dtimer-coffee.jpg",
+        "tags": ["halal", "signature"]
+      },
+      {
+        "name": "Kopi O",
+        "description": "Traditional black coffee brewed the Malaysian way. Strong, aromatic, no frills.",
+        "price": "RM3.90",
+        "image": "/images/dishes/kopi-o.jpg",
+        "tags": ["halal"]
+      },
+      {
+        "name": "Kopi Susu",
+        "description": "Malaysian white coffee with evaporated milk. Smooth, creamy, comforting.",
+        "price": "RM4.50",
+        "image": "/images/dishes/kopi-susu.jpg",
+        "tags": ["halal"]
+      }
+    ]
+  },
+  {
+    "category": "Tea",
+    "items": [
+      {
+        "name": "Teh Tarik",
+        "description": "Malaysian pulled tea. Frothy, creamy, and perfectly sweet.",
+        "price": "RM4.50",
+        "image": "/images/dishes/teh-tarik.jpg",
+        "tags": ["halal"]
+      },
+      {
+        "name": "Teh O Ais Limau",
+        "description": "Iced lime tea. Refreshing, tangy, the perfect palate cleanser.",
+        "price": "RM4.90",
+        "image": "/images/dishes/teh-o-limau.jpg",
+        "tags": ["halal"]
+      }
+    ]
+  },
+  {
+    "category": "Sodas",
+    "items": [
+      {
+        "name": "Sirap Bandung",
+        "description": "Rose syrup with milk over ice. A Malaysian classic in pink.",
+        "price": "RM5.90",
+        "image": "/images/dishes/sirap-bandung.jpg",
+        "tags": ["halal"]
+      },
+      {
+        "name": "Limau Ais",
+        "description": "Fresh lime juice with soda water. Simple, sharp, refreshing.",
+        "price": "RM4.90",
+        "image": "/images/dishes/limau-ais.jpg",
+        "tags": ["halal"]
+      }
+    ]
+  },
+  {
+    "category": "Blended Drinks",
+    "items": [
+      {
+        "name": "Mango Smoothie",
+        "description": "Blended fresh mango with ice. Thick, tropical, and naturally sweet.",
+        "price": "RM10.90",
+        "image": "/images/dishes/mango-smoothie.jpg",
+        "tags": ["halal"]
+      },
+      {
+        "name": "Oreo Blended",
+        "description": "Cookies and cream blended with ice. A crowd favourite with the kids.",
+        "price": "RM11.90",
+        "image": "/images/dishes/oreo-blended.jpg",
+        "tags": ["halal"]
+      }
+    ]
+  },
+  {
+    "category": "Desserts & Pastries",
+    "items": [
+      {
+        "name": "Pandan Gula Melaka Cake",
+        "description": "Fluffy pandan sponge with palm sugar caramel. Light, fragrant, and not too sweet.",
+        "price": "RM9.90",
+        "image": "/images/dishes/pandan-gula-melaka.jpg",
+        "tags": ["halal", "vegetarian"]
+      },
+      {
+        "name": "Brownies",
+        "description": "Dense, fudgy chocolate brownies. Served warm if you ask nicely.",
+        "price": "RM8.90",
+        "image": "/images/dishes/brownies.jpg",
+        "tags": ["halal", "vegetarian"]
+      },
+      {
+        "name": "Roti Bakar",
+        "description": "Thick-cut toast with kaya and butter. The classic Malaysian tea-time companion.",
+        "price": "RM5.90",
+        "image": "/images/dishes/roti-bakar.jpg",
+        "tags": ["halal", "vegetarian"]
+      }
+    ]
+  }
+]

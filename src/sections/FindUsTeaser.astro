@@ -1,0 +1,77 @@
+---
+import Container from '../components/Container.astro';
+import Button from '../components/Button.astro';
+import FadeIn from '../components/FadeIn';
+import siteData from '../data/site.json';
+import { MapPin, Clock, Navigation } from 'lucide-react';
+---
+
+<section class="py-20 sm:py-28 bg-charred-brown text-coconut-cream">
+  <Container>
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+      <FadeIn client:visible direction="up">
+        <div class="rounded-2xl overflow-hidden bg-coconut-cream/10 aspect-video shadow-lg">
+          <iframe
+            src={siteData.google.mapsEmbed}
+            title="D'Timer Cafe location map"
+            class="w-full h-full border-0"
+            loading="lazy"
+            allowfullscreen
+            referrerpolicy="no-referrer-when-downgrade"
+          ></iframe>
+        </div>
+      </FadeIn>
+
+      <div>
+        <FadeIn client:visible direction="up">
+          <p class="text-xs sm:text-sm font-body font-medium tracking-[0.25em] uppercase text-turmeric-gold">
+            Find Us
+          </p>
+        </FadeIn>
+
+        <FadeIn client:visible delay={0.15} direction="up">
+          <h2 class="mt-3 font-display text-3xl sm:text-4xl lg:text-5xl font-semibold text-bone-white leading-tight">
+            Wangsa Maju, KL.
+          </h2>
+        </FadeIn>
+
+        <FadeIn client:visible delay={0.3} direction="up">
+          <div class="mt-6 space-y-4">
+            <div class="flex items-start gap-3">
+              <MapPin size={18} class="mt-0.5 flex-shrink-0 text-sambal-red" />
+              <p class="text-base text-coconut-cream/90 leading-relaxed">
+                {siteData.address.street}, {siteData.address.road}<br />
+                {siteData.address.area}, {siteData.address.postcode} {siteData.address.city}
+              </p>
+            </div>
+            <div class="flex items-start gap-3">
+              <Clock size={18} class="mt-0.5 flex-shrink-0 text-sambal-red" />
+              <div class="text-base text-coconut-cream/90">
+                <p>Sun – Thu: 2:30pm – 11pm</p>
+                <p>Fri – Sat: 2:30pm – 12am</p>
+              </div>
+            </div>
+          </div>
+        </FadeIn>
+
+        <FadeIn client:visible delay={0.45} direction="up">
+          <div class="mt-8 flex flex-wrap gap-4">
+            <Button
+              href={`https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(`D'Timer Cafe, ${siteData.address.street}, ${siteData.address.city}`)}`}
+              variant="primary"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="inline-flex items-center gap-2"
+            >
+              <Navigation size={16} />
+              Get Directions
+            </Button>
+            <Button href="/story#visit" variant="outline" class="border-coconut-cream text-coconut-cream hover:bg-coconut-cream hover:text-charred-brown">
+              More Details
+            </Button>
+          </div>
+        </FadeIn>
+      </div>
+    </div>
+  </Container>
+</section>

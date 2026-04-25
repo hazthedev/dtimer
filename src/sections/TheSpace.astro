@@ -1,0 +1,46 @@
+---
+import Container from '../components/Container.astro';
+import FadeIn from '../components/FadeIn';
+
+const interiorImages = [
+  { src: '/images/interior/interior-1.jpg', alt: 'Dining area with traditional Malay decor' },
+  { src: '/images/interior/interior-2.jpg', alt: 'Family-style seating arrangement' },
+  { src: '/images/interior/interior-3.jpg', alt: 'Counter and kitchen view' },
+];
+---
+
+<section class="py-20 sm:py-28 bg-charred-brown text-coconut-cream overflow-hidden">
+  <Container>
+    <FadeIn client:visible>
+      <div class="text-center max-w-2xl mx-auto">
+        <p class="text-xs sm:text-sm font-body font-medium tracking-[0.25em] uppercase text-turmeric-gold">
+          The Space
+        </p>
+        <h2 class="mt-4 font-display text-3xl sm:text-4xl lg:text-5xl font-bold text-bone-white leading-tight">
+          Family cafe energy.
+        </h2>
+        <p class="mt-4 text-base sm:text-lg text-coconut-cream/90 leading-relaxed">
+          Bring your parents. Bring your kids. There's room for everyone.
+        </p>
+      </div>
+    </FadeIn>
+  </Container>
+
+  <div class="mt-12 flex gap-4 px-4 sm:px-6 lg:px-8 overflow-x-auto snap-x snap-mandatory scrollbar-hide pb-4">
+    {interiorImages.map((img, index) => (
+      <div class="flex-shrink-0 w-[85vw] sm:w-[60vw] lg:w-[40vw] snap-center">
+        <FadeIn client:visible delay={index * 0.15} direction="left">
+          <div class="aspect-[16/10] rounded-2xl overflow-hidden bg-coconut-cream/10">
+            <img
+              src={img.src}
+              alt={img.alt}
+              class="w-full h-full object-cover"
+              loading="lazy"
+              onerror={`this.src='https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=800&q=80'`}
+            />
+          </div>
+        </FadeIn>
+      </div>
+    ))}
+  </div>
+</section>

@@ -1,0 +1,73 @@
+---
+import Container from '../components/Container.astro';
+import FadeIn from '../components/FadeIn';
+---
+
+<section class="py-20 sm:py-28 bg-warm-sand">
+  <Container>
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+      <div class="order-2 lg:order-1">
+        <FadeIn client:visible direction="right">
+          <p class="text-xs sm:text-sm font-body font-medium tracking-[0.25em] uppercase text-sambal-red">
+            Our story
+          </p>
+        </FadeIn>
+
+        <FadeIn client:visible delay={0.15} direction="right">
+          <h2 class="mt-3 font-display text-3xl sm:text-4xl lg:text-5xl font-semibold text-warm-black leading-tight">
+            Family-run since 2008.
+          </h2>
+        </FadeIn>
+
+        <FadeIn client:visible delay={0.3} direction="right">
+          <p class="mt-5 text-base sm:text-lg text-tea-brown leading-relaxed">
+            Recipes passed down. No shortcuts. The cafe still feels like home because it is. 
+            What started as a small kitchen in Wangsa Maju has become a gathering place for 
+            Johor families missing the taste of the south — and KL locals discovering what 
+            authentic Johor cuisine really means.
+          </p>
+        </FadeIn>
+
+        <FadeIn client:visible delay={0.45} direction="right">
+          <p class="mt-4 text-base sm:text-lg text-tea-brown leading-relaxed">
+            Every bowl of Laksa Johor is made with pekat fish broth prepared fresh. 
+            Every Lontong Darat comes with three sambal options because that's how it's done 
+            back home. The coffee is brewed the old way — strong, with condensed milk, 
+            just like the kopitiams in Johor Bahru.
+          </p>
+        </FadeIn>
+
+        <FadeIn client:visible delay={0.6} direction="right">
+          <div class="mt-8 flex items-center gap-6">
+            <div class="text-center">
+              <p class="font-display text-3xl sm:text-4xl font-bold text-sambal-red">17+</p>
+              <p class="text-xs text-tea-brown mt-1">Years serving</p>
+            </div>
+            <div class="w-px h-12 bg-coconut-cream"></div>
+            <div class="text-center">
+              <p class="font-display text-3xl sm:text-4xl font-bold text-sambal-red">850+</p>
+              <p class="text-xs text-tea-brown mt-1">Google reviews</p>
+            </div>
+            <div class="w-px h-12 bg-coconut-cream"></div>
+            <div class="text-center">
+              <p class="font-display text-3xl sm:text-4xl font-bold text-sambal-red">14K</p>
+              <p class="text-xs text-tea-brown mt-1">Instagram followers</p>
+            </div>
+          </div>
+        </FadeIn>
+      </div>
+
+      <FadeIn client:visible direction="left" class="order-1 lg:order-2">
+        <div class="aspect-[3/4] rounded-2xl overflow-hidden bg-coconut-cream shadow-lg">
+          <img
+            src="/images/interior/cafe-interior.jpg"
+            alt="D'Timer Cafe interior with family-style seating"
+            class="w-full h-full object-cover"
+            loading="lazy"
+            onerror="this.src='https://images.unsplash.com/photo-1554118811-1e0d58224f24?w=800&q=80'"
+          />
+        </div>
+      </FadeIn>
+    </div>
+  </Container>
+</section>

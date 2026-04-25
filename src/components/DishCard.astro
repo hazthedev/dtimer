@@ -1,0 +1,45 @@
+---
+interface Props {
+  name: string;
+  description: string;
+  price: string;
+  image: string;
+  tags?: string[];
+  johorOriginal?: boolean;
+}
+
+const { name, description, price, image, tags = [], johorOriginal = false } = Astro.props;
+---
+
+<article class="group bg-bone-white rounded-xl overflow-hidden shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300 border border-coconut-cream/50">
+  <div class="relative aspect-[4/3] overflow-hidden bg-coconut-cream">
+    <img
+      src={image}
+      alt={name}
+      class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+      loading="lazy"
+      onerror="this.src='/images/placeholder-dish.jpg'"
+    />
+    {johorOriginal && (
+      <span class="absolute top-3 left-3 bg-sambal-red text-bone-white text-xs font-bold px-3 py-1 rounded-full">
+        Johor Original
+      </span>
+    )}
+  </div>
+  <div class="p-5">
+    <div class="flex items-start justify-between gap-3">
+      <h3 class="font-display text-lg font-semibold text-warm-black leading-snug">{name}</h3>
+      <span class="text-sm font-bold text-sambal-red whitespace-nowrap mt-0.5">{price}</span>
+    </div>
+    <p class="mt-2 text-sm text-tea-brown leading-relaxed">{description}</p>
+    {tags.length > 0 && (
+      <div class="mt-3 flex flex-wrap gap-2">
+        {tags.map(tag => (
+          <span class="text-xs font-medium px-2 py-1 rounded-full bg-warm-sand text-tea-brown capitalize">
+            {tag === 'spicy' ? '🌶️ Spicy' : tag}
+          </span>
+        ))}
+      </div>
+    )}
+  </div>
+</article>

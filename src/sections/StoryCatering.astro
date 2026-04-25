@@ -1,0 +1,70 @@
+---
+import Container from '../components/Container.astro';
+import Button from '../components/Button.astro';
+import FadeIn from '../components/FadeIn';
+
+const whatsappNumber = import.meta.env.PUBLIC_WHATSAPP_NUMBER || '60182035828';
+const whatsappLink = `https://wa.me/${whatsappNumber}?text=Hi%20D'Timer%20Cafe!%20I'm%20interested%20in%20catering%20for...`;
+---
+
+<section id="catering" class="py-20 sm:py-28 bg-bone-white">
+  <Container>
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+      <div>
+        <FadeIn client:visible direction="right">
+          <p class="text-xs sm:text-sm font-body font-medium tracking-[0.25em] uppercase text-sambal-red">
+            Catering
+          </p>
+          <h2 class="mt-3 font-display text-3xl sm:text-4xl lg:text-5xl font-semibold text-warm-black leading-tight">
+            Feed a crowd with Johor flavour.
+          </h2>
+        </FadeIn>
+
+        <FadeIn client:visible delay={0.15} direction="right">
+          <p class="mt-5 text-base sm:text-lg text-tea-brown leading-relaxed">
+            Whether it's a corporate lunch, a family kenduri, or a birthday 
+            gathering, we can put together a Johor spread that impresses. 
+            Our catering packages include:
+          </p>
+        </FadeIn>
+
+        <FadeIn client:visible delay={0.3} direction="right">
+          <ul class="mt-6 space-y-3">
+            {[
+              'Nasi Ambeng trays (serves 5-50 pax)',
+              'Laksa Johor live station with custom toppings',
+              'Lontong Darat buffet with all three sambals',
+              'Custom Johor coffee and dessert packages',
+              'Halal-certified preparation'
+            ].map(item => (
+              <li class="flex items-start gap-3 text-sm sm:text-base text-tea-brown">
+                <span class="w-1.5 h-1.5 rounded-full bg-sambal-red mt-2 flex-shrink-0"></span>
+                {item}
+              </li>
+            ))}
+          </ul>
+        </FadeIn>
+
+        <FadeIn client:visible delay={0.45} direction="right">
+          <div class="mt-8 flex flex-wrap gap-4">
+            <Button href={whatsappLink} variant="primary" size="lg" target="_blank" rel="noopener noreferrer">
+              Enquire on WhatsApp
+            </Button>
+          </div>
+        </FadeIn>
+      </div>
+
+      <FadeIn client:visible direction="left">
+        <div class="aspect-[4/3] rounded-2xl overflow-hidden bg-coconut-cream shadow-lg">
+          <img
+            src="/images/family/catering.jpg"
+            alt="D'Timer Cafe catering spread with Nasi Ambeng and Laksa Johor"
+            class="w-full h-full object-cover"
+            loading="lazy"
+            onerror="this.src='https://images.unsplash.com/photo-1559339352-11d035aa65de?w=800&q=80'"
+          />
+        </div>
+      </FadeIn>
+    </div>
+  </Container>
+</section>

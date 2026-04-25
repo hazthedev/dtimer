@@ -1,0 +1,16 @@
+---
+import { MessageCircle } from 'lucide-react';
+
+const whatsappNumber = import.meta.env.PUBLIC_WHATSAPP_NUMBER || '60182035828';
+const whatsappLink = `https://wa.me/${whatsappNumber}?text=Hi%20D'Timer%20Cafe!%20I'd%20like%20to%20ask%20about...`;
+---
+
+<a
+  href={whatsappLink}
+  target="_blank"
+  rel="noopener noreferrer"
+  aria-label="Chat on WhatsApp"
+  class="fixed bottom-6 right-6 z-50 w-14 h-14 bg-sambal-red text-bone-white rounded-full shadow-lg flex items-center justify-center hover:bg-charred-brown transition-colors duration-300 animate-pulse-warm"
+>
+  <MessageCircle size={24} />
+</a>

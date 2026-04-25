@@ -1,0 +1,94 @@
+---
+import '../styles/global.css';
+import '@fontsource/fraunces/400.css';
+import '@fontsource/fraunces/600.css';
+import '@fontsource/fraunces/700.css';
+import '@fontsource/inter/400.css';
+import '@fontsource/inter/500.css';
+import '@fontsource/inter/700.css';
+import '@fontsource/caveat/400.css';
+
+interface Props {
+  title: string;
+  description: string;
+  image?: string;
+  canonical?: string;
+}
+
+const { title, description, image = '/images/og-default.jpg', canonical } = Astro.props;
+const siteUrl = 'https://dtimercafe.my';
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="generator" content={Astro.generator} />
+    <meta name="description" content={description} />
+    <meta name="theme-color" content="#F5EEDF" />
+
+    <!-- Canonical -->
+    {canonical && <link rel="canonical" href={`${siteUrl}${canonical}`} />}
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="D'Timer Cafe" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={`${siteUrl}${image}`} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:locale" content="en_MY" />
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={`${siteUrl}${image}`} />
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+
+    <!-- JSON-LD Restaurant Schema -->
+    <script type="application/ld+json" set:html={JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "Restaurant",
+      "name": "D'Timer Cafe",
+      "description": "Authentic Johor cuisine in Wangsa Maju, KL. Laksa Johor, Lontong Darat, Nasi Ambeng — family-run since 2008.",
+      "url": siteUrl,
+      "telephone": "+60-18-203-5828",
+      "priceRange": "$$",
+      "servesCuisine": ["Malaysian", "Johor", "Halal"],
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "11-G, Blok B, Plaza Wangsa Maju, Jalan Maju Ria 2",
+        "addressLocality": "Kuala Lumpur",
+        "addressRegion": "Wilayah Persekutuan",
+        "postalCode": "53300",
+        "addressCountry": "MY"
+      },
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": "3.20329",
+        "longitude": "101.73407"
+      },
+      "openingHoursSpecification": [
+        { "@type": "OpeningHoursSpecification", "dayOfWeek": ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday"], "opens": "14:30", "closes": "23:00" },
+        { "@type": "OpeningHoursSpecification", "dayOfWeek": ["Friday", "Saturday"], "opens": "14:30", "closes": "00:00" }
+      ],
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": "4.2",
+        "reviewCount": "854"
+      },
+      "image": `${siteUrl}/images/og-default.jpg`
+    })} />
+
+    <title>{title}</title>
+  </head>
+  <body class="bg-warm-sand text-warm-black antialiased">
+    <slot />
+  </body>
+</html>

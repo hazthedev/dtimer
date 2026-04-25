@@ -1,0 +1,56 @@
+---
+import Container from '../components/Container.astro';
+import Button from '../components/Button.astro';
+import FadeIn from '../components/FadeIn';
+import siteData from '../data/site.json';
+import { MessageCircle, ShoppingBag } from 'lucide-react';
+
+const whatsappNumber = import.meta.env.PUBLIC_WHATSAPP_NUMBER || '60182035828';
+const whatsappLink = `https://wa.me/${whatsappNumber}?text=Hi%20D'Timer%20Cafe!%20I'd%20like%20to%20place%20an%20order...`;
+---
+
+<section class="py-20 sm:py-28 bg-charred-brown text-coconut-cream">
+  <Container>
+    <FadeIn client:visible>
+      <div class="text-center max-w-2xl mx-auto">
+        <h2 class="font-display text-3xl sm:text-4xl lg:text-5xl font-bold text-bone-white leading-tight">
+          Hungry?
+        </h2>
+        <p class="mt-4 text-base sm:text-lg text-coconut-cream/90 leading-relaxed">
+          Order directly via WhatsApp for the fastest response, 
+          or find us on your favourite delivery app.
+        </p>
+
+        <div class="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4">
+          <a
+            href={whatsappLink}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center gap-2 bg-sambal-red text-bone-white px-8 py-4 rounded-lg text-base font-medium hover:bg-[#d13d28] transition-colors"
+          >
+            <MessageCircle size={20} />
+            WhatsApp Order
+          </a>
+          <a
+            href={siteData.delivery.foodpanda}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center gap-2 bg-[#D70F64] text-white px-8 py-4 rounded-lg text-base font-medium hover:bg-[#b80d55] transition-colors"
+          >
+            <ShoppingBag size={20} />
+            FoodPanda
+          </a>
+          <a
+            href={siteData.delivery.grabfood}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center gap-2 bg-[#00B14F] text-white px-8 py-4 rounded-lg text-base font-medium hover:bg-[#009940] transition-colors"
+          >
+            <ShoppingBag size={20} />
+            GrabFood
+          </a>
+        </div>
+      </div>
+    </FadeIn>
+  </Container>
+</section>

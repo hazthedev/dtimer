@@ -1,0 +1,145 @@
+---
+import Container from './Container.astro';
+import { Menu, X, Phone } from 'lucide-react';
+
+const navLinks = [
+  { label: 'Home', href: '/' },
+  { label: 'Menu', href: '/menu' },
+  { label: 'Story', href: '/story' },
+];
+
+const whatsappNumber = import.meta.env.PUBLIC_WHATSAPP_NUMBER || '60182035828';
+const whatsappLink = `https://wa.me/${whatsappNumber}?text=Hi%20D'Timer%20Cafe!%20I'd%20like%20to%20ask%20about...`;
+---
+
+<header id="navbar" class="fixed top-0 left-0 right-0 z-50 transition-all duration-250">
+  <Container>
+    <nav class="flex items-center justify-between h-16 sm:h-20">
+      <!-- Logo -->
+      <a href="/" class="font-display text-xl sm:text-2xl font-bold text-warm-black hover:text-sambal-red transition-colors">
+        D'Timer
+      </a>
+
+      <!-- Desktop Nav -->
+      <div class="hidden md:flex items-center gap-8">
+        {navLinks.map(link => (
+          <a
+            href={link.href}
+            class="text-sm font-medium text-tea-brown hover:text-sambal-red transition-colors relative group"
+          >
+            {link.label}
+            <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-sambal-red transition-all duration-300 group-hover:w-full" />
+          </a>
+        ))}
+        <a
+          href={whatsappLink}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="inline-flex items-center gap-2 bg-sambal-red text-bone-white px-5 py-2.5 rounded-lg text-sm font-medium hover:bg-charred-brown transition-colors"
+        >
+          <Phone size={16} />
+          <span>WhatsApp</span>
+        </a>
+      </div>
+
+      <!-- Mobile Menu Button -->
+      <button
+        id="mobile-menu-btn"
+        class="md:hidden p-2 text-warm-black hover:text-sambal-red transition-colors"
+        aria-label="Toggle menu"
+        aria-expanded="false"
+        aria-controls="mobile-menu"
+      >
+        <Menu id="menu-icon" size={24} />
+        <X id="close-icon" size={24} class="hidden" />
+      </button>
+    </nav>
+  </Container>
+
+  <!-- Mobile Menu -->
+  <div
+    id="mobile-menu"
+    class="md:hidden fixed inset-x-0 top-16 bg-warm-sand/95 backdrop-blur-md border-b border-coconut-cream transform -translate-y-full transition-transform duration-300"
+    aria-hidden="true"
+  >
+    <Container>
+      <div class="py-6 flex flex-col gap-4">
+        {navLinks.map(link => (
+          <a
+            href={link.href}
+            class="text-lg font-medium text-warm-black hover:text-sambal-red transition-colors py-2"
+          >
+            {link.label}
+          </a>
+        ))}
+        <a
+          href={whatsappLink}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="inline-flex items-center justify-center gap-2 bg-sambal-red text-bone-white px-5 py-3 rounded-lg text-base font-medium hover:bg-charred-brown transition-colors mt-2"
+        >
+          <Phone size={18} />
+          <span>WhatsApp Us</span>
+        </a>
+      </div>
+    </Container>
+  </div>
+</header>
+
+<!-- Spacer for fixed header -->
+<div class="h-16 sm:h-20"></div>
+
+<script>
+  const navbar = document.getElementById('navbar');
+  const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+  const mobileMenu = document.getElementById('mobile-menu');
+  const menuIcon = document.getElementById('menu-icon');
+  const closeIcon = document.getElementById('close-icon');
+  let isMenuOpen = false;
+
+  // Scroll behavior
+  function handleScroll() {
+    if (window.scrollY > 20) {
+      navbar?.classList.add('bg-warm-sand/90', 'backdrop-blur-md', 'shadow-sm');
+      navbar?.classList.remove('bg-transparent');
+    } else {
+      navbar?.classList.remove('bg-warm-sand/90', 'backdrop-blur-md', 'shadow-sm');
+      navbar?.classList.add('bg-transparent');
+    }
+  }
+
+  window.addEventListener('scroll', handleScroll, { passive: true });
+  handleScroll();
+
+  // Mobile menu toggle
+  mobileMenuBtn?.addEventListener('click', () => {
+    isMenuOpen = !isMenuOpen;
+    mobileMenuBtn.setAttribute('aria-expanded', String(isMenuOpen));
+    mobileMenu?.setAttribute('aria-hidden', String(!isMenuOpen));
+
+    if (isMenuOpen) {
+      mobileMenu?.classList.remove('-translate-y-full');
+      menuIcon?.classList.add('hidden');
+      closeIcon?.classList.remove('hidden');
+      navbar?.classList.add('bg-warm-sand/95');
+    } else {
+      mobileMenu?.classList.add('-translate-y-full');
+      menuIcon?.classList.remove('hidden');
+      closeIcon?.classList.add('hidden');
+      handleScroll();
+    }
+  });
+
+  // Close menu on link click
+  mobileMenu?.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => {
+      isMenuOpen = false;
+      mobileMenuBtn?.setAttribute('aria-expanded', 'false');
+      mobileMenu?.setAttribute('aria-hidden', 'true');
+      mobileMenu?.classList.add('-translate-y-full');
+      menuIcon?.classList.remove('hidden');
+      closeIcon?.classList.add('hidden');
+      handleScroll();
+    });
+  });
+</script>

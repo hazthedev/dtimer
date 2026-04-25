@@ -1,0 +1,23 @@
+---
+import Container from '../components/Container.astro';
+import FadeIn from '../components/FadeIn';
+---
+
+<section class="py-16 sm:py-24 bg-warm-sand">
+  <Container>
+    <FadeIn client:visible>
+      <div class="max-w-2xl mx-auto text-center">
+        <p class="text-xs sm:text-sm font-body font-medium tracking-[0.25em] uppercase text-sambal-red">
+          Authentic Johor Cuisine
+        </p>
+        <h1 class="mt-4 font-display text-4xl sm:text-5xl lg:text-6xl font-bold text-warm-black leading-tight">
+          The Menu
+        </h1>
+        <p class="mt-4 text-base sm:text-lg text-tea-brown leading-relaxed">
+          Authentic Johor cuisine, all-day coffee, kampung desserts. 
+          Everything made with recipes brought up from the south.
+        </p>
+      </div>
+    </FadeIn>
+  </Container>
+</section>

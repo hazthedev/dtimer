@@ -1,0 +1,27 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Navbar from '../components/Navbar.astro';
+import Footer from '../components/Footer.astro';
+import WhatsAppFloat from '../components/WhatsAppFloat.astro';
+import MenuHero from '../sections/MenuHero.astro';
+import MenuTabs from '../components/MenuTabs';
+import MenuCatering from '../sections/MenuCatering.astro';
+import MenuOrderCTA from '../sections/MenuOrderCTA.astro';
+---
+
+<BaseLayout
+  title="Menu | D'Timer Cafe — Authentic Johor Cuisine & Coffee"
+  description="Browse the full menu at D'Timer Cafe. Laksa Johor, Lontong Darat, Nasi Ambeng, Mee Rebus, Soto Ayam, Johor coffee, and more. Halal, family-run since 2008."
+  image="/images/og-menu.jpg"
+  canonical="/menu"
+>
+  <Navbar />
+  <main>
+    <MenuHero />
+    <MenuTabs client:visible />
+    <MenuCatering />
+    <MenuOrderCTA />
+  </main>
+  <Footer />
+  <WhatsAppFloat />
+</BaseLayout>

@@ -1,0 +1,65 @@
+---
+import Container from '../components/Container.astro';
+import FadeIn from '../components/FadeIn';
+---
+
+<section class="py-20 sm:py-28 bg-banana-leaf-green relative overflow-hidden">
+  <div class="absolute inset-0 opacity-5">
+    <img src="/decorations/banana-leaf.svg" alt="" class="w-full h-full object-cover" aria-hidden="true" />
+  </div>
+
+  <Container class="relative z-10">
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+      <div class="order-2 lg:order-1">
+        <FadeIn client:visible direction="right">
+          <p class="text-xs sm:text-sm font-body font-medium tracking-[0.25em] uppercase text-turmeric-gold">
+            Recognition
+          </p>
+        </FadeIn>
+
+        <FadeIn client:visible delay={0.15} direction="right">
+          <h2 class="mt-3 font-display text-3xl sm:text-4xl lg:text-5xl font-semibold text-bone-white leading-tight">
+            TV3 came knocking in 2017.
+          </h2>
+        </FadeIn>
+
+        <FadeIn client:visible delay={0.3} direction="right">
+          <p class="mt-5 text-base sm:text-lg text-coconut-cream/90 leading-relaxed">
+            Jalan-Jalan Cari Makan is Malaysia's most respected food programme — 
+            a show that has visited thousands of restaurants across the country. 
+            When they featured D'Timer Cafe in 2017, it validated what regulars 
+            already knew: this is Johor cuisine done right.
+          </p>
+        </FadeIn>
+
+        <FadeIn client:visible delay={0.45} direction="right">
+          <p class="mt-4 text-base sm:text-lg text-coconut-cream/90 leading-relaxed">
+            The crew filmed the Laksa Johor preparation from start to finish — 
+            the pekat fish broth, the hand-pounded sambal belacan, the careful 
+            arrangement of ulam. They tasted all three Lontong Darat variations 
+            and declared it "rasa macam air tangan mak."
+          </p>
+        </FadeIn>
+
+        <FadeIn client:visible delay={0.6} direction="right">
+          <div class="mt-8 inline-flex items-center gap-3 bg-bone-white/10 backdrop-blur-sm px-6 py-3 rounded-full">
+            <span class="w-2 h-2 rounded-full bg-turmeric-gold animate-pulse"></span>
+            <span class="text-sm font-medium text-bone-white">Jalan-Jalan Cari Makan, TV3, 2017</span>
+          </div>
+        </FadeIn>
+      </div>
+
+      <FadeIn client:visible direction="left" class="order-1 lg:order-2">
+        <div class="aspect-[4/3] rounded-2xl overflow-hidden bg-coconut-cream/20 shadow-lg">
+          <img
+            src="/images/tv3/tv3-feature.jpg"
+            alt="D'Timer Cafe featured on TV3 Jalan-Jalan Cari Makan"
+            class="w-full h-full object-cover"
+            loading="lazy"
+            onerror="this.src='https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=800&q=80'"
+          />
+        </div>
+      </FadeIn>
+    </div>
+  </Container>
+</section>

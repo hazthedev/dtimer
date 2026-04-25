@@ -1,0 +1,46 @@
+{
+  "name": "D'Timer Cafe",
+  "tagline": "Johor on a plate. Wangsa Maju, since 2008.",
+  "address": {
+    "street": "11-G, Blok B, Plaza Wangsa Maju",
+    "road": "Jalan Maju Ria 2",
+    "section": "Seksyen 10",
+    "area": "Taman Sri Rampai",
+    "postcode": "53300",
+    "city": "Kuala Lumpur"
+  },
+  "phone": "018-203 5828",
+  "whatsapp": "60182035828",
+  "hours": {
+    "sunday": "2:30pm – 11:00pm",
+    "monday": "2:30pm – 11:00pm",
+    "tuesday": "2:30pm – 11:00pm",
+    "wednesday": "2:30pm – 11:00pm",
+    "thursday": "2:30pm – 11:00pm",
+    "friday": "2:30pm – 12:00am",
+    "saturday": "2:30pm – 12:00am"
+  },
+  "social": {
+    "instagram": "https://instagram.com/dtimercafe",
+    "facebook": "https://facebook.com/dtimercafe"
+  },
+  "delivery": {
+    "foodpanda": "https://www.foodpanda.my/restaurant/dtimer-cafe",
+    "grabfood": "https://food.grab.com/my/en/restaurant/dtimer-cafe-delivery"
+  },
+  "google": {
+    "reviewsUrl": "https://g.co/kgs/example",
+    "rating": 4.2,
+    "reviewCount": 854,
+    "mapsEmbed": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3983.588791668174!2d101.7340733147572!3d3.203289997667629!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31cc3843bcb6c775%3A0x1ef2c8186c2d0acf!2sD'Timer%20Cafe!5e0!3m2!1sen!2smy!4v1620000000000!5m2!1sen!2smy"
+  },
+  "companyNo": "200801004765",
+  "since": 2008,
+  "press": [
+    {
+      "outlet": "TV3",
+      "program": "Jalan-Jalan Cari Makan",
+      "year": 2017
+    }
+  ]
+}

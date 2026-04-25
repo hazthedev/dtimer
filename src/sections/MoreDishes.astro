@@ -1,0 +1,56 @@
+---
+import Container from '../components/Container.astro';
+import SectionHeading from '../components/SectionHeading.astro';
+import DishCard from '../components/DishCard.astro';
+import FadeIn from '../components/FadeIn';
+
+const moreDishes = [
+  {
+    name: 'Mee Rebus',
+    description: 'Yellow noodles in thick, sweet-savoury gravy with bean curd, boiled egg, and greens.',
+    price: 'RM18.90',
+    image: '/images/dishes/mee-rebus.jpg',
+    tags: ['halal']
+  },
+  {
+    name: 'Mee Bandung',
+    description: 'Noodles in rich tomato-chilli gravy with seafood and egg. Bold, red, unmistakably Johor.',
+    price: 'RM18.90',
+    image: '/images/dishes/mee-bandung.jpg',
+    tags: ['halal', 'spicy']
+  },
+  {
+    name: 'Soto Ayam',
+    description: 'Fragrant turmeric chicken soup with rice cakes, bean sprouts, and sambal kicap.',
+    price: 'RM16.90',
+    image: '/images/dishes/soto-ayam.jpg',
+    tags: ['halal']
+  },
+  {
+    name: 'Asam Pedas',
+    description: 'Tangy, spicy tamarind stew with fish and vegetables. A Johor-Melaka heritage dish.',
+    price: 'RM26.90',
+    image: '/images/dishes/asam-pedas.jpg',
+    tags: ['halal', 'spicy']
+  }
+];
+---
+
+<section class="py-20 sm:py-28 bg-bone-white">
+  <Container>
+    <FadeIn client:visible>
+      <SectionHeading
+        headline="Stay for the Laksa. Come back for the rest."
+        subheadline="The Mee Rebus, Mee Bandung, Soto Ayam, and Asam Pedas all tell the same story — flavor first, no shortcuts."
+      />
+    </FadeIn>
+
+    <div class="mt-14 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+      {moreDishes.map((dish, index) => (
+        <FadeIn client:visible delay={index * 0.1} key={dish.name}>
+          <DishCard {...dish} />
+        </FadeIn>
+      ))}
+    </div>
+  </Container>
+</section>

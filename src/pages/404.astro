@@ -1,0 +1,33 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Navbar from '../components/Navbar.astro';
+import Footer from '../components/Footer.astro';
+import Button from '../components/Button.astro';
+---
+
+<BaseLayout
+  title="Page Not Found | D'Timer Cafe"
+  description="The page you're looking for doesn't exist. Head back to D'Timer Cafe's homepage or explore our menu."
+>
+  <Navbar />
+  <main class="min-h-[70vh] flex items-center justify-center bg-warm-sand">
+    <div class="text-center px-4">
+      <p class="font-accent text-6xl sm:text-8xl text-sambal-red transform -rotate-3">Oops!</p>
+      <h1 class="mt-6 font-display text-3xl sm:text-4xl font-bold text-warm-black">
+        Page not found
+      </h1>
+      <p class="mt-4 text-base sm:text-lg text-tea-brown max-w-md mx-auto">
+        Looks like this dish isn't on the menu. Let's get you back to something tasty.
+      </p>
+      <div class="mt-8 flex flex-wrap justify-center gap-4">
+        <Button href="/" variant="primary" size="lg">
+          Back to Home
+        </Button>
+        <Button href="/menu" variant="outline" size="lg">
+          Browse Menu
+        </Button>
+      </div>
+    </div>
+  </main>
+  <Footer />
+</BaseLayout>

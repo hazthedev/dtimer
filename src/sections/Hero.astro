@@ -1,0 +1,61 @@
+---
+import Container from '../components/Container.astro';
+import Button from '../components/Button.astro';
+import FadeIn from '../components/FadeIn';
+---
+
+<section class="relative min-h-[90vh] flex items-center overflow-hidden">
+  <!-- Background Image -->
+  <div class="absolute inset-0 z-0">
+    <img
+      src="/images/dishes/laksa-johor.jpg"
+      alt="Steaming bowl of Laksa Johor"
+      class="w-full h-full object-cover animate-scale-settle"
+      onerror="this.src='https://images.unsplash.com/photo-1569718212165-3a8278d5f624?w=1600&q=80'"
+    />
+    <div class="absolute inset-0 bg-gradient-to-r from-charred-brown/80 via-charred-brown/50 to-charred-brown/30"></div>
+    <div class="absolute inset-0 bg-gradient-to-t from-charred-brown/60 via-transparent to-transparent"></div>
+  </div>
+
+  <!-- Content -->
+  <Container class="relative z-10 py-20">
+    <div class="max-w-2xl">
+      <FadeIn client:load delay={0}>
+        <p class="text-xs sm:text-sm font-body font-medium tracking-[0.25em] uppercase text-sambal-red mb-4">
+          Wangsa Maju · Johor Cuisine · Since 2008
+        </p>
+      </FadeIn>
+
+      <FadeIn client:load delay={0.15}>
+        <h1 class="font-display text-5xl sm:text-6xl lg:text-7xl font-bold text-bone-white leading-[1.1]">
+          Johor on a plate.
+        </h1>
+      </FadeIn>
+
+      <FadeIn client:load delay={0.3}>
+        <p class="mt-6 text-lg sm:text-xl text-coconut-cream leading-relaxed max-w-lg">
+          Authentic Laksa Johor, Lontong Darat, and Nasi Ambeng — recipes brought up from the south. 
+          Tastes like mom's cooking. Featured on TV3 since 2017.
+        </p>
+      </FadeIn>
+
+      <FadeIn client:load delay={0.45}>
+        <div class="mt-8 flex flex-wrap gap-4">
+          <Button href="/menu" variant="primary" size="lg">
+            See the Menu
+          </Button>
+          <Button href="/story#visit" variant="outline" size="lg" class="border-bone-white text-bone-white hover:bg-bone-white hover:text-charred-brown">
+            Find Us
+          </Button>
+        </div>
+      </FadeIn>
+
+      <!-- Handwritten annotation -->
+      <FadeIn client:load delay={0.6} direction="left">
+        <p class="mt-10 font-accent text-2xl sm:text-3xl text-coconut-cream/80 transform -rotate-3 inline-block">
+          since 2008
+        </p>
+      </FadeIn>
+    </div>
+  </Container>
+</section>

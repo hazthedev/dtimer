@@ -1,0 +1,37 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Navbar from '../components/Navbar.astro';
+import Footer from '../components/Footer.astro';
+import WhatsAppFloat from '../components/WhatsAppFloat.astro';
+import StoryHero from '../sections/StoryHero.astro';
+import TheBeginning from '../sections/TheBeginning.astro';
+import TV3MomentStory from '../sections/TV3MomentStory.astro';
+import TheRecipes from '../sections/TheRecipes.astro';
+import TheSpace from '../sections/TheSpace.astro';
+import VisitUs from '../sections/VisitUs.astro';
+import StoryCatering from '../sections/StoryCatering.astro';
+import ContactSection from '../sections/ContactSection.astro';
+import SocialBlock from '../sections/SocialBlock.astro';
+---
+
+<BaseLayout
+  title="Our Story & Visit | D'Timer Cafe — Johor Cuisine Since 2008"
+  description="Family-run since 2008. Authentic Johor recipes passed down through generations. Featured on TV3's Jalan-Jalan Cari Makan. Visit us in Wangsa Maju, KL."
+  image="/images/og-story.jpg"
+  canonical="/story"
+>
+  <Navbar />
+  <main>
+    <StoryHero />
+    <TheBeginning />
+    <TV3MomentStory />
+    <TheRecipes />
+    <TheSpace />
+    <VisitUs />
+    <StoryCatering />
+    <ContactSection />
+    <SocialBlock />
+  </main>
+  <Footer />
+  <WhatsAppFloat />
+</BaseLayout>

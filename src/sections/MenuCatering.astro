@@ -1,0 +1,36 @@
+---
+import Container from '../components/Container.astro';
+import Button from '../components/Button.astro';
+import FadeIn from '../components/FadeIn';
+
+const whatsappNumber = import.meta.env.PUBLIC_WHATSAPP_NUMBER || '60182035828';
+const whatsappLink = `https://wa.me/${whatsappNumber}?text=Hi%20D'Timer%20Cafe!%20I'm%20interested%20in%20catering%20for...`;
+---
+
+<section class="py-20 sm:py-28 bg-warm-sand">
+  <Container>
+    <FadeIn client:visible>
+      <div class="max-w-3xl mx-auto text-center bg-bone-white rounded-2xl p-8 sm:p-12 shadow-sm border border-coconut-cream/50">
+        <p class="text-xs sm:text-sm font-body font-medium tracking-[0.25em] uppercase text-sambal-red">
+          Corporate & Events
+        </p>
+        <h2 class="mt-4 font-display text-2xl sm:text-3xl lg:text-4xl font-semibold text-warm-black leading-tight">
+          Catering for offices and events.
+        </h2>
+        <p class="mt-4 text-base sm:text-lg text-tea-brown leading-relaxed max-w-xl mx-auto">
+          Planning a team lunch, family gathering, or corporate event? 
+          We offer custom Johor packages — from Nasi Ambeng spreads 
+          to Laksa Johor stations. Made to order, delivered fresh.
+        </p>
+        <div class="mt-8 flex flex-wrap justify-center gap-4">
+          <Button href={whatsappLink} variant="primary" size="lg" target="_blank" rel="noopener noreferrer">
+            WhatsApp for Catering
+          </Button>
+          <Button href="/story#catering" variant="outline" size="lg">
+            Learn More
+          </Button>
+        </div>
+      </div>
+    </FadeIn>
+  </Container>
+</section>

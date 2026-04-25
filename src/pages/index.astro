@@ -1,0 +1,35 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Navbar from '../components/Navbar.astro';
+import Footer from '../components/Footer.astro';
+import WhatsAppFloat from '../components/WhatsAppFloat.astro';
+import Hero from '../sections/Hero.astro';
+import ThreeHallmarks from '../sections/ThreeHallmarks.astro';
+import TV3Moment from '../sections/TV3Moment.astro';
+import MoreDishes from '../sections/MoreDishes.astro';
+import TheCoffee from '../sections/TheCoffee.astro';
+import Reviews from '../sections/Reviews.astro';
+import TheFamily from '../sections/TheFamily.astro';
+import FindUsTeaser from '../sections/FindUsTeaser.astro';
+---
+
+<BaseLayout
+  title="D'Timer Cafe Wangsa Maju | Authentic Johor Cuisine Since 2008"
+  description="Laksa Johor, Lontong Darat, Nasi Ambeng — authentic Johor cuisine in Wangsa Maju, KL. Featured on TV3. Halal, family-run since 2008. Now serving on FoodPanda & GrabFood."
+  image="/images/og-home.jpg"
+  canonical="/"
+>
+  <Navbar />
+  <main>
+    <Hero />
+    <ThreeHallmarks />
+    <TV3Moment />
+    <MoreDishes />
+    <TheCoffee />
+    <Reviews />
+    <TheFamily />
+    <FindUsTeaser />
+  </main>
+  <Footer />
+  <WhatsAppFloat />
+</BaseLayout>

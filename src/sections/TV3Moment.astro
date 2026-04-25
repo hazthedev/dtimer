@@ -1,0 +1,41 @@
+---
+import Container from '../components/Container.astro';
+import FadeIn from '../components/FadeIn';
+---
+
+<section class="py-20 sm:py-28 bg-banana-leaf-green relative overflow-hidden">
+  <!-- Subtle pattern overlay -->
+  <div class="absolute inset-0 opacity-5">
+    <img src="/decorations/banana-leaf.svg" alt="" class="w-full h-full object-cover" aria-hidden="true" />
+  </div>
+
+  <Container class="relative z-10">
+    <div class="max-w-3xl mx-auto text-center">
+      <FadeIn client:visible>
+        <p class="text-xs sm:text-sm font-body font-medium tracking-[0.25em] uppercase text-turmeric-gold">
+          As Featured On
+        </p>
+      </FadeIn>
+
+      <FadeIn client:visible delay={0.15}>
+        <h2 class="mt-4 font-display text-3xl sm:text-4xl lg:text-5xl font-bold text-bone-white leading-tight">
+          TV3's Jalan-Jalan Cari Makan, 2017
+        </h2>
+      </FadeIn>
+
+      <FadeIn client:visible delay={0.3}>
+        <p class="mt-5 text-base sm:text-lg text-coconut-cream/90 leading-relaxed max-w-xl mx-auto">
+          Recognized by the show that knows Malaysian food best — for serving Johor cuisine the way it should be. 
+          One of the highest honours a local restaurant can receive.
+        </p>
+      </FadeIn>
+
+      <FadeIn client:visible delay={0.45}>
+        <div class="mt-8 inline-flex items-center gap-3 bg-bone-white/10 backdrop-blur-sm px-6 py-3 rounded-full">
+          <span class="w-2 h-2 rounded-full bg-turmeric-gold animate-pulse"></span>
+          <span class="text-sm font-medium text-bone-white">Over 850 Google reviews since</span>
+        </div>
+      </FadeIn>
+    </div>
+  </Container>
+</section>

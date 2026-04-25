@@ -1,0 +1,57 @@
+---
+import Container from '../components/Container.astro';
+import SectionHeading from '../components/SectionHeading.astro';
+import FadeIn from '../components/FadeIn';
+
+const hallmarks = [
+  {
+    name: 'Lontong Darat',
+    description: 'Three sambals. Pick your favorite — kuah kacang, kuah sambal, or kacang pool. Each one a different way home.',
+    image: '/images/dishes/lontong-darat-sambal.jpg',
+    fallback: 'https://images.unsplash.com/photo-1603088549196-592455a1bb46?w=800&q=80'
+  },
+  {
+    name: 'Laksa Johor',
+    description: 'Pekat fish broth. Spaghetti, not laksa noodles (yes, on purpose). Ulam, sambal belacan. The way they do it down south.',
+    image: '/images/dishes/laksa-johor.jpg',
+    fallback: 'https://images.unsplash.com/photo-1569718212165-3a8278d5f624?w=800&q=80'
+  },
+  {
+    name: 'Nasi Ambeng',
+    description: 'Rice, ayam kicap, mee goreng, serunding, sayur — one plate, one tradition. Built to share, easier to finish.',
+    image: '/images/dishes/nasi-ambeng.jpg',
+    fallback: 'https://images.unsplash.com/photo-1512058564366-18510be2db19?w=800&q=80'
+  }
+];
+---
+
+<section class="py-20 sm:py-28 bg-warm-sand">
+  <Container>
+    <FadeIn client:visible>
+      <SectionHeading
+        eyebrow="What Johor cooks better"
+        headline="Three dishes you'll struggle to find done right outside the south."
+      />
+    </FadeIn>
+
+    <div class="mt-14 grid grid-cols-1 md:grid-cols-3 gap-8">
+      {hallmarks.map((dish, index) => (
+        <FadeIn client:visible delay={index * 0.2} key={dish.name}>
+          <article class="group">
+            <div class="aspect-[4/3] rounded-xl overflow-hidden bg-coconut-cream">
+              <img
+                src={dish.image}
+                alt={dish.name}
+                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                loading="lazy"
+                onerror={`this.src='${dish.fallback}'`}
+              />
+            </div>
+            <h3 class="mt-5 font-display text-xl sm:text-2xl font-semibold text-warm-black">{dish.name}</h3>
+            <p class="mt-2 text-sm sm:text-base text-tea-brown leading-relaxed">{dish.description}</p>
+          </article>
+        </FadeIn>
+      ))}
+    </div>
+  </Container>
+</section>
