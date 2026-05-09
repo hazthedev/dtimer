@@ -1,131 +1,323 @@
 @import "tailwindcss";
 
+/* =====================================================================
+   D'TIMER — BRUTALIST CHRONOGRAPH SYSTEM
+   Stark mechanical timepiece. Single hot accent. Monospace precision.
+   Palette: void / paper / acid / steel / rust
+   ===================================================================== */
+
 @theme {
-  /* Brand Colors */
-  --color-warm-sand: #F5EEDF;
-  --color-bone-white: #FCF8EC;
-  --color-warm-black: #211A14;
-  --color-tea-brown: #695544;
-  --color-sambal-red: #B83A28;
-  --color-banana-leaf-green: #3D5A3A;
-  --color-turmeric-gold: #D9A441;
-  --color-coconut-cream: #F0E2C7;
-  --color-charred-brown: #2A1F18;
+  /* Chronograph palette — names retained for backward compatibility,
+     values overridden to deliver the new aesthetic. */
+  --color-warm-sand:        #ECE8DE;  /* paper subtle */
+  --color-bone-white:       #F5F3EF;  /* paper */
+  --color-warm-black:       #050507;  /* void */
+  --color-tea-brown:        #6B6B70;  /* steel */
+  --color-sambal-red:       #D4FF00;  /* acid (single hot accent) */
+  --color-banana-leaf-green:#0B0B0F;  /* deep void block */
+  --color-turmeric-gold:    #D4FF00;  /* acid mirror */
+  --color-coconut-cream:    #C8C6BD;  /* dim paper */
+  --color-charred-brown:    #050507;  /* void */
 
-  /* Font Families */
-  --font-display: 'Fraunces', serif;
-  --font-body: 'Inter', sans-serif;
-  --font-accent: 'Caveat', cursive;
+  /* Direct chronograph tokens */
+  --color-void:    #050507;
+  --color-paper:   #F5F3EF;
+  --color-acid:    #D4FF00;
+  --color-steel:   #6B6B70;
+  --color-rust:    #B8442E;
+  --color-grid:    rgba(5, 5, 7, 0.06);
+
+  /* Typography — Google Fonts mono / mechanical pairing */
+  --font-display: 'Major Mono Display', 'Bungee Mono', ui-monospace, monospace;
+  --font-body:    'JetBrains Mono', ui-monospace, monospace;
+  --font-accent:  'Space Mono', ui-monospace, monospace;
 }
 
-/* Custom Animations */
-@keyframes fade-up-soft {
-  0% {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-  100% {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-@keyframes gentle-rise {
-  0% {
-    opacity: 0;
-    transform: translateY(12px);
-  }
-  100% {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-@keyframes pulse-warm {
-  0%, 100% {
-    box-shadow: 0 0 0 0 rgba(184, 58, 40, 0.4);
-  }
-  50% {
-    box-shadow: 0 0 0 12px rgba(184, 58, 40, 0);
-  }
-}
-
-@keyframes scale-settle {
-  0% {
-    transform: scale(1.02);
-  }
-  100% {
-    transform: scale(1);
-  }
-}
-
-.animate-fade-up-soft {
-  animation: fade-up-soft 0.7s ease-out forwards;
-}
-
-.animate-gentle-rise {
-  animation: gentle-rise 0.5s ease-out forwards;
-}
-
-.animate-pulse-warm {
-  animation: pulse-warm 2s ease-in-out infinite;
-}
-
-.animate-scale-settle {
-  animation: scale-settle 0.9s ease-out forwards;
-}
-
-/* Reduced motion */
-@media (prefers-reduced-motion: reduce) {
-  .animate-fade-up-soft,
-  .animate-gentle-rise,
-  .animate-pulse-warm,
-  .animate-scale-settle {
-    animation: none;
-    opacity: 1;
-    transform: none;
-  }
-}
-
-/* Global base styles */
+/* ---------------- Base ---------------- */
 html {
   scroll-behavior: smooth;
+  background: var(--color-paper);
 }
 
 body {
   font-family: var(--font-body);
-  color: var(--color-warm-black);
-  background-color: var(--color-warm-sand);
+  color: var(--color-void);
+  background-color: var(--color-paper);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  letter-spacing: 0.005em;
+  /* Hairline tick grid — runs site-wide */
+  background-image:
+    linear-gradient(to right, var(--color-grid) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--color-grid) 1px, transparent 1px);
+  background-size: 64px 64px;
+  background-attachment: fixed;
 }
 
-/* Selection color */
+/* Body acquires a faint digital noise overlay for cyberpunk grain */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 1;
+  opacity: 0.035;
+  mix-blend-mode: multiply;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.9 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
+}
+
+/* Display headings — mechanical / wide tracking */
+h1, h2, h3, .font-display {
+  font-family: var(--font-display);
+  letter-spacing: 0.01em;
+  text-transform: uppercase;
+  font-weight: 400;
+}
+
+/* Mono numerals everywhere */
+[class*="text-"] tabular-nums,
+.tabular-nums,
+.font-numeric {
+  font-feature-settings: "tnum" 1, "ss01" 1;
+  font-variant-numeric: tabular-nums;
+}
+
+/* Selection — acid on void */
 ::selection {
-  background-color: var(--color-sambal-red);
-  color: var(--color-bone-white);
+  background-color: var(--color-acid);
+  color: var(--color-void);
 }
 
-/* Focus states */
+/* Focus — hard square outline (no rounded glow) */
 :focus-visible {
-  outline: 2px solid var(--color-sambal-red);
-  outline-offset: 2px;
+  outline: 2px solid var(--color-acid);
+  outline-offset: 3px;
+  border-radius: 0;
 }
 
-/* Scrollbar styling */
+/* Scrollbar */
 ::-webkit-scrollbar {
-  width: 8px;
+  width: 10px;
+  height: 10px;
 }
-
 ::-webkit-scrollbar-track {
-  background: var(--color-warm-sand);
+  background: var(--color-paper);
+  border-left: 1px solid var(--color-grid);
 }
-
 ::-webkit-scrollbar-thumb {
-  background: var(--color-tea-brown);
-  border-radius: 4px;
+  background: var(--color-void);
+  border: 2px solid var(--color-paper);
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-acid);
 }
 
-::-webkit-scrollbar-thumb:hover {
-  background: var(--color-sambal-red);
+/* =====================================================================
+   FLATTEN ROUNDED + SHADOW AESTHETIC FROM EXISTING SECTIONS
+   ===================================================================== */
+.rounded-lg, .rounded-xl, .rounded-full, .rounded-md, .rounded-2xl, .rounded-3xl {
+  border-radius: 0 !important;
+}
+.shadow-sm, .shadow, .shadow-md, .shadow-lg, .shadow-xl, .shadow-2xl {
+  box-shadow: none !important;
+}
+
+/* Backdrop blur softened — chronograph faces don't blur */
+.backdrop-blur-sm, .backdrop-blur-md, .backdrop-blur-lg {
+  backdrop-filter: none !important;
+}
+
+/* Buttons in legacy markup get brutalist treatment */
+a[class*="bg-sambal-red"],
+button[class*="bg-sambal-red"],
+.bg-sambal-red {
+  border: 1.5px solid var(--color-void);
+  color: var(--color-void) !important;
+  font-family: var(--font-body);
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  font-size: 0.78rem;
+  position: relative;
+  transition: transform 120ms steps(4, end), background-color 120ms linear, color 120ms linear;
+}
+a[class*="bg-sambal-red"]:hover,
+button[class*="bg-sambal-red"]:hover {
+  background-color: var(--color-void) !important;
+  color: var(--color-acid) !important;
+  transform: translate(-2px, -2px);
+  box-shadow: 4px 4px 0 var(--color-acid) !important;
+}
+
+/* Outline buttons (sambal-red border variants) */
+.border-sambal-red {
+  border-color: var(--color-void) !important;
+}
+.text-sambal-red {
+  color: var(--color-rust) !important;
+}
+
+/* Gradient overlays from hero — replace with hard scanlines */
+[class*="bg-gradient"] {
+  background: linear-gradient(180deg, rgba(5,5,7,0.78), rgba(5,5,7,0.45) 60%, rgba(5,5,7,0.85)) !important;
+}
+
+/* =====================================================================
+   CHRONOGRAPH PRIMITIVES
+   ===================================================================== */
+
+/* Eyebrow / label — mono caps with leading bar */
+.eyebrow,
+[class*="tracking-[0.25em]"] {
+  font-family: var(--font-body) !important;
+  font-weight: 500 !important;
+  letter-spacing: 0.32em !important;
+  text-transform: uppercase;
+  font-size: 0.7rem !important;
+  color: var(--color-void);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+[class*="tracking-[0.25em]"]::before {
+  content: "";
+  display: inline-block;
+  width: 1.6rem;
+  height: 1px;
+  background: currentColor;
+}
+
+/* Tick frame — square brackets around blocks */
+.tick-frame {
+  position: relative;
+  padding: 1.5rem;
+  border: 1px solid var(--color-void);
+}
+.tick-frame::before, .tick-frame::after {
+  content: "";
+  position: absolute;
+  width: 12px; height: 12px;
+  border: 2px solid var(--color-acid);
+}
+.tick-frame::before { top: -1px; left: -1px; border-right: 0; border-bottom: 0; }
+.tick-frame::after  { bottom: -1px; right: -1px; border-left: 0; border-top: 0; }
+
+/* Chrono pill — mini segmented label */
+.chrono-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.35rem 0.7rem;
+  border: 1px solid var(--color-void);
+  font-family: var(--font-body);
+  font-size: 0.7rem;
+  font-weight: 500;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  background: var(--color-paper);
+}
+.chrono-pill .dot {
+  width: 6px; height: 6px;
+  background: var(--color-acid);
+  border-radius: 50%;
+  animation: tick-pulse 1s steps(2, end) infinite;
+}
+
+/* =====================================================================
+   ANIMATIONS — precision tick / segmented reveal
+   ===================================================================== */
+
+@keyframes tick-pulse {
+  0%, 49% { opacity: 1; transform: scale(1); }
+  50%, 100% { opacity: 0.25; transform: scale(0.7); }
+}
+
+@keyframes segment-reveal {
+  0%   { clip-path: inset(0 100% 0 0); }
+  100% { clip-path: inset(0 0 0 0); }
+}
+
+@keyframes hairline-draw {
+  0%   { transform: scaleX(0); }
+  100% { transform: scaleX(1); }
+}
+
+/* Map legacy animation names to new ones */
+@keyframes fade-up-soft {
+  0%   { opacity: 0; transform: translateY(12px); clip-path: inset(0 0 100% 0); }
+  100% { opacity: 1; transform: translateY(0); clip-path: inset(0 0 0 0); }
+}
+@keyframes gentle-rise {
+  0%   { opacity: 0; transform: translateY(8px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+@keyframes pulse-warm {
+  0%, 100% { box-shadow: 0 0 0 0 var(--color-acid); }
+  50%      { box-shadow: 0 0 0 10px transparent; }
+}
+@keyframes scale-settle {
+  0%   { transform: scale(1.04); filter: contrast(1.2) saturate(0.4); }
+  100% { transform: scale(1); filter: contrast(1) saturate(1); }
+}
+
+.animate-fade-up-soft { animation: fade-up-soft 0.6s steps(12, end) forwards; }
+.animate-gentle-rise  { animation: gentle-rise 0.4s ease-out forwards; }
+.animate-pulse-warm   { animation: pulse-warm 1.6s steps(8, end) infinite; }
+.animate-scale-settle { animation: scale-settle 0.9s ease-out forwards; }
+
+.tick-second {
+  animation: tick-pulse 1s steps(2, end) infinite;
+}
+
+/* Snap-rotate hover — for hallmark cards / icons */
+.snap-rotate {
+  transition: transform 180ms steps(6, end);
+}
+.snap-rotate:hover {
+  transform: rotate(-1.5deg) translate(-2px, -2px);
+}
+
+/* =====================================================================
+   IMAGE TREATMENT — stark mono-ish processing
+   ===================================================================== */
+img {
+  /* Mild desaturation gives uniformity on a brutalist sheet */
+  filter: contrast(1.05) saturate(0.85);
+}
+img[src*="dishes/"], img[src*="interior/"], img[src*="family/"], img[src*="tv3/"] {
+  filter: contrast(1.08) saturate(0.78);
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+}
+
+/* =====================================================================
+   GRID-BACKDROP UTILITY (optional, for sections that opt in)
+   ===================================================================== */
+.bg-tickgrid {
+  background-image:
+    linear-gradient(to right, var(--color-grid) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--color-grid) 1px, transparent 1px);
+  background-size: 32px 32px;
+}
+.bg-void-grid {
+  background-color: var(--color-void);
+  background-image:
+    linear-gradient(to right, rgba(212,255,0,0.06) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(212,255,0,0.06) 1px, transparent 1px);
+  background-size: 48px 48px;
+}
+
+/* Display digit block (huge mono numerals) */
+.digit-block {
+  font-family: var(--font-display);
+  font-weight: 400;
+  letter-spacing: -0.02em;
+  font-feature-settings: "tnum" 1;
 }

@@ -2,63 +2,204 @@
 import Container from '../components/Container.astro';
 import Button from '../components/Button.astro';
 import FadeIn from '../components/FadeIn';
+
+// Pre-compute tick marks for the chronograph dial
+const ticks = Array.from({ length: 60 }, (_, i) => i);
 ---
 
-<section class="relative min-h-[90vh] flex items-center overflow-hidden">
-  <!-- Background Image -->
-  <div class="absolute inset-0 z-0">
+<section class="relative min-h-[92vh] flex items-center overflow-hidden bg-warm-black">
+  <!-- Backdrop: void grid + scan -->
+  <div class="absolute inset-0 z-0 bg-void-grid"></div>
+
+  <!-- Background image (kept, but heavily contrast-treated by global filter) -->
+  <div class="absolute inset-0 z-0 opacity-30 mix-blend-luminosity">
     <img
       src="/images/dishes/laksa-johor.jpg"
-      alt="Steaming bowl of Laksa Johor"
+      alt=""
+      aria-hidden="true"
       class="w-full h-full object-cover animate-scale-settle"
       loading="eager"
       fetchpriority="high"
       decoding="async"
-      onerror="this.src='https://images.unsplash.com/photo-1569718212165-3a8278d5f624?w=1600&q=80'"
+      onerror="this.style.display='none'"
     />
-    <div class="absolute inset-0 bg-gradient-to-r from-charred-brown/80 via-charred-brown/50 to-charred-brown/30"></div>
-    <div class="absolute inset-0 bg-gradient-to-t from-charred-brown/60 via-transparent to-transparent"></div>
+  </div>
+
+  <!-- Scanline gradient -->
+  <div class="absolute inset-0 z-[1] bg-gradient-to-r from-charred-brown/95 via-charred-brown/60 to-charred-brown/40"></div>
+
+  <!-- Hairline cross marks at corners -->
+  <div class="absolute top-6 left-6 z-[2] w-6 h-6 border-l-2 border-t-2 border-sambal-red"></div>
+  <div class="absolute top-6 right-6 z-[2] w-6 h-6 border-r-2 border-t-2 border-sambal-red"></div>
+  <div class="absolute bottom-6 left-6 z-[2] w-6 h-6 border-l-2 border-b-2 border-sambal-red"></div>
+  <div class="absolute bottom-6 right-6 z-[2] w-6 h-6 border-r-2 border-b-2 border-sambal-red"></div>
+
+  <!-- Chronograph dial (SVG, top-right on lg) -->
+  <div class="hidden lg:block absolute right-12 xl:right-24 top-1/2 -translate-y-1/2 z-[2] w-[420px] h-[420px] opacity-90 pointer-events-none">
+    <svg id="hero-dial" viewBox="0 0 200 200" class="w-full h-full" aria-hidden="true">
+      <!-- outer rim -->
+      <circle cx="100" cy="100" r="96" fill="none" stroke="#F5F3EF" stroke-width="0.6" opacity="0.6" />
+      <circle cx="100" cy="100" r="92" fill="none" stroke="#D4FF00" stroke-width="0.4" stroke-dasharray="1 3" />
+      <circle cx="100" cy="100" r="76" fill="none" stroke="#F5F3EF" stroke-width="0.3" opacity="0.4" />
+
+      <!-- 60 tick marks -->
+      {ticks.map((i) => {
+        const angle = (i * 6 - 90) * (Math.PI / 180);
+        const isMajor = i % 5 === 0;
+        const r1 = 96;
+        const r2 = isMajor ? 84 : 90;
+        const x1 = 100 + r1 * Math.cos(angle);
+        const y1 = 100 + r1 * Math.sin(angle);
+        const x2 = 100 + r2 * Math.cos(angle);
+        const y2 = 100 + r2 * Math.sin(angle);
+        return (
+          <line
+            x1={x1} y1={y1} x2={x2} y2={y2}
+            stroke={isMajor ? '#D4FF00' : '#F5F3EF'}
+            stroke-width={isMajor ? 1.2 : 0.4}
+            opacity={isMajor ? 1 : 0.55}
+          />
+        );
+      })}
+
+      <!-- Hour numerals (12, 3, 6, 9) -->
+      <text x="100" y="22" text-anchor="middle" fill="#F5F3EF" font-family="JetBrains Mono, monospace" font-size="7" font-weight="700">12</text>
+      <text x="178" y="103" text-anchor="middle" fill="#F5F3EF" font-family="JetBrains Mono, monospace" font-size="7" font-weight="700">03</text>
+      <text x="100" y="184" text-anchor="middle" fill="#F5F3EF" font-family="JetBrains Mono, monospace" font-size="7" font-weight="700">06</text>
+      <text x="22"  y="103" text-anchor="middle" fill="#F5F3EF" font-family="JetBrains Mono, monospace" font-size="7" font-weight="700">09</text>
+
+      <!-- Sub-dial -->
+      <circle cx="100" cy="138" r="18" fill="none" stroke="#F5F3EF" stroke-width="0.5" opacity="0.7" />
+      <text x="100" y="132" text-anchor="middle" fill="#6B6B70" font-family="JetBrains Mono, monospace" font-size="3" letter-spacing="0.3">SINCE</text>
+      <text x="100" y="142" text-anchor="middle" fill="#D4FF00" font-family="Major Mono Display, monospace" font-size="7" font-weight="700">2008</text>
+
+      <!-- Brand text on dial -->
+      <text x="100" y="68" text-anchor="middle" fill="#D4FF00" font-family="Major Mono Display, monospace" font-size="6" letter-spacing="0.4">D'TIMER</text>
+      <text x="100" y="80" text-anchor="middle" fill="#6B6B70" font-family="JetBrains Mono, monospace" font-size="3" letter-spacing="0.4">CHRONOGRAPH · WMJ</text>
+
+      <!-- Hands -->
+      <line id="dial-hour"   x1="100" y1="100" x2="100" y2="58" stroke="#F5F3EF" stroke-width="2" stroke-linecap="square"/>
+      <line id="dial-minute" x1="100" y1="100" x2="100" y2="36" stroke="#F5F3EF" stroke-width="1.4" stroke-linecap="square"/>
+      <line id="dial-second" x1="100" y1="108" x2="100" y2="22" stroke="#D4FF00" stroke-width="0.8" stroke-linecap="square"/>
+      <circle cx="100" cy="100" r="2.5" fill="#D4FF00" />
+      <circle cx="100" cy="100" r="0.8" fill="#050507" />
+    </svg>
   </div>
 
   <!-- Content -->
   <Container class="relative z-10 py-20">
-    <div class="max-w-2xl">
+    <div class="max-w-3xl">
       <FadeIn client:load delay={0}>
-        <p class="text-xs sm:text-sm font-body font-medium tracking-[0.25em] uppercase text-sambal-red mb-4">
+        <p class="text-xs sm:text-sm font-body font-medium tracking-[0.25em] uppercase text-sambal-red mb-6">
           Wangsa Maju · Johor Cuisine · Since 2008
         </p>
       </FadeIn>
 
       <FadeIn client:load delay={0.15}>
-        <h1 class="font-display text-5xl sm:text-6xl lg:text-7xl font-bold text-bone-white leading-[1.1]">
-          Johor on a plate.
+        <h1 class="font-display text-[3.2rem] sm:text-7xl lg:text-[8rem] font-normal text-bone-white leading-[0.92] tracking-tight">
+          <span class="block">JOHOR</span>
+          <span class="block text-sambal-red">/ ON A</span>
+          <span class="block">PLATE.</span>
         </h1>
       </FadeIn>
 
+      <!-- Hairline divider -->
+      <div class="mt-10 flex items-center gap-4">
+        <div class="h-px w-24 bg-sambal-red origin-left"
+             style="animation: hairline-draw 0.8s ease-out 0.4s both;"></div>
+        <span class="font-body text-[0.7rem] tracking-[0.4em] uppercase text-coconut-cream/70">REC · 17:23:08</span>
+      </div>
+
       <FadeIn client:load delay={0.3}>
-        <p class="mt-6 text-lg sm:text-xl text-coconut-cream leading-relaxed max-w-lg">
-          Authentic Laksa Johor, Lontong Darat, and Nasi Ambeng — recipes brought up from the south. 
+        <p class="mt-8 font-body text-base sm:text-lg text-coconut-cream/85 leading-relaxed max-w-xl">
+          Authentic Laksa Johor, Lontong Darat, and Nasi Ambeng — recipes brought up from the south.
           Tastes like mom's cooking. Featured on TV3 since 2017.
         </p>
       </FadeIn>
 
       <FadeIn client:load delay={0.45}>
-        <div class="mt-8 flex flex-wrap gap-4">
-          <Button href="/menu" variant="primary" size="lg">
-            See the Menu
-          </Button>
-          <Button href="/story#visit" variant="outline" size="lg" class="border-bone-white text-bone-white hover:bg-bone-white hover:text-charred-brown">
-            Find Us
-          </Button>
+        <div class="mt-10 flex flex-wrap gap-0">
+          <a href="/menu" class="inline-flex items-center gap-3 px-7 py-4 bg-sambal-red text-warm-black font-body font-bold text-sm tracking-[0.2em] uppercase border border-sambal-red hover:bg-warm-black hover:text-sambal-red transition-colors">
+            <span class="tabular-nums">[01]</span>
+            <span>SEE THE MENU</span>
+            <span aria-hidden="true">→</span>
+          </a>
+          <a href="/story#visit" class="inline-flex items-center gap-3 px-7 py-4 border border-bone-white text-bone-white font-body font-bold text-sm tracking-[0.2em] uppercase hover:bg-bone-white hover:text-warm-black transition-colors">
+            <span class="tabular-nums">[02]</span>
+            <span>FIND US</span>
+          </a>
         </div>
       </FadeIn>
 
-      <!-- Handwritten annotation -->
-      <FadeIn client:load delay={0.6} direction="left">
-        <p class="mt-10 font-accent text-2xl sm:text-3xl text-coconut-cream/80 transform -rotate-3 inline-block">
-          since 2008
-        </p>
+      <!-- Stat row -->
+      <FadeIn client:load delay={0.6}>
+        <div class="mt-14 grid grid-cols-3 gap-6 max-w-xl border-t border-coconut-cream/20 pt-6">
+          <div>
+            <div class="font-display text-2xl sm:text-3xl text-bone-white tabular-nums">17<span class="text-sambal-red">YR</span></div>
+            <div class="font-body text-[0.65rem] tracking-[0.25em] uppercase text-coconut-cream/60 mt-1">In service</div>
+          </div>
+          <div>
+            <div class="font-display text-2xl sm:text-3xl text-bone-white tabular-nums">854<span class="text-sambal-red">+</span></div>
+            <div class="font-body text-[0.65rem] tracking-[0.25em] uppercase text-coconut-cream/60 mt-1">Reviews</div>
+          </div>
+          <div>
+            <div class="font-display text-2xl sm:text-3xl text-bone-white tabular-nums">04.2</div>
+            <div class="font-body text-[0.65rem] tracking-[0.25em] uppercase text-coconut-cream/60 mt-1">Avg rating</div>
+          </div>
+        </div>
       </FadeIn>
     </div>
   </Container>
+
+  <!-- Bottom marquee strip -->
+  <div class="absolute bottom-0 left-0 right-0 z-[3] border-t border-bone-white/15 bg-warm-black/80 py-2 overflow-hidden">
+    <div class="flex gap-12 whitespace-nowrap font-body text-[0.7rem] tracking-[0.3em] uppercase text-coconut-cream/70">
+      <span>· LAKSA JOHOR ·</span>
+      <span class="text-sambal-red">· LONTONG DARAT ·</span>
+      <span>· NASI AMBENG ·</span>
+      <span class="text-sambal-red">· KOPI O ·</span>
+      <span>· ASAM PEDAS ·</span>
+      <span class="text-sambal-red">· TV3 SINCE 2017 ·</span>
+      <span>· LAKSA JOHOR ·</span>
+      <span class="text-sambal-red">· LONTONG DARAT ·</span>
+    </div>
+  </div>
 </section>
+
+<script is:inline>
+  // Live chronograph dial — sweeping seconds + true clock hands
+  (function () {
+    const dial = document.getElementById('hero-dial');
+    if (!dial) return;
+    const hourEl   = document.getElementById('dial-hour');
+    const minEl    = document.getElementById('dial-minute');
+    const secEl    = document.getElementById('dial-second');
+    function render() {
+      const now = new Date();
+      const ms = now.getMilliseconds();
+      const s = now.getSeconds() + ms / 1000;
+      const m = now.getMinutes() + s / 60;
+      const h = (now.getHours() % 12) + m / 60;
+      secEl.setAttribute('transform',  `rotate(${s * 6} 100 100)`);
+      minEl.setAttribute('transform',  `rotate(${m * 6} 100 100)`);
+      hourEl.setAttribute('transform', `rotate(${h * 30} 100 100)`);
+      requestAnimationFrame(render);
+    }
+    render();
+
+    // Animate dial entry with anime.js when available
+    if (window.anime) {
+      window.anime({
+        targets: '#hero-dial line, #hero-dial circle, #hero-dial text',
+        opacity: [0, (el, i, t) => el.getAttribute('opacity') || 1],
+        duration: 900,
+        delay: window.anime.stagger(8),
+        easing: 'easeOutQuad'
+      });
+    }
+
+    // Live REC timer in subhead
+    const recEls = document.querySelectorAll('.font-body.text-\\[0\\.7rem\\]');
+    // (kept simple — REC label stays as set, time is decorative)
+  })();
+</script>

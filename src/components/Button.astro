@@ -19,18 +19,19 @@ const {
   rel
 } = Astro.props;
 
-const baseStyles = 'inline-flex items-center justify-center font-body font-medium rounded-lg transition-colors transition-transform ease-out duration-300 hover:duration-200 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sambal-red';
+// Brutalist chronograph button — square, mono caps, snap interactions
+const baseStyles = 'group relative inline-flex items-center justify-center gap-3 font-body font-bold uppercase tracking-[0.22em] border transition-[transform,background-color,color,box-shadow] duration-150 ease-out focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sambal-red';
 
 const variantStyles = {
-  primary: 'bg-sambal-red text-bone-white hover:bg-charred-brown hover:shadow-lg hover:-translate-y-0.5 active:scale-[0.97] active:duration-100',
-  outline: 'border-2 border-sambal-red text-sambal-red hover:bg-sambal-red hover:text-bone-white hover:-translate-y-0.5 active:scale-[0.97] active:duration-100',
-  ghost: 'text-sambal-red hover:bg-sambal-red/10 hover:-translate-y-0.5 active:scale-[0.97] active:duration-100'
+  primary: 'bg-sambal-red text-warm-black border-sambal-red hover:bg-warm-black hover:text-sambal-red hover:-translate-x-1 hover:-translate-y-1 hover:shadow-[6px_6px_0_var(--color-sambal-red)] active:translate-x-0 active:translate-y-0 active:shadow-none',
+  outline: 'bg-transparent text-warm-black border-warm-black hover:bg-warm-black hover:text-sambal-red hover:-translate-x-1 hover:-translate-y-1 hover:shadow-[6px_6px_0_var(--color-sambal-red)] active:translate-x-0 active:translate-y-0 active:shadow-none',
+  ghost:   'bg-transparent text-warm-black border-transparent hover:border-warm-black hover:bg-bone-white active:scale-[0.98]'
 };
 
 const sizeStyles = {
-  sm: 'px-4 py-2 text-sm',
-  md: 'px-6 py-3 text-base',
-  lg: 'px-8 py-4 text-lg'
+  sm: 'px-4 py-2 text-[0.7rem]',
+  md: 'px-6 py-3 text-[0.78rem]',
+  lg: 'px-7 py-4 text-[0.85rem]'
 };
 
 const combinedClasses = `${baseStyles} ${variantStyles[variant]} ${sizeStyles[size]} ${className}`;
@@ -39,9 +40,11 @@ const combinedClasses = `${baseStyles} ${variantStyles[variant]} ${sizeStyles[si
 {href ? (
   <a href={href} class={combinedClasses} target={target} rel={rel}>
     <slot />
+    <span aria-hidden="true" class="transition-transform group-hover:translate-x-0.5">→</span>
   </a>
 ) : (
   <button type={type} class={combinedClasses}>
     <slot />
+    <span aria-hidden="true" class="transition-transform group-hover:translate-x-0.5">→</span>
   </button>
 )}

@@ -3,45 +3,55 @@ import Container from './Container.astro';
 import { Menu, X, Phone } from 'lucide-react';
 
 const navLinks = [
-  { label: 'Home', href: '/' },
-  { label: 'Menu', href: '/menu' },
-  { label: 'Story', href: '/story' },
+  { label: 'Home',  href: '/',       code: '01' },
+  { label: 'Menu',  href: '/menu',   code: '02' },
+  { label: 'Story', href: '/story',  code: '03' },
 ];
 
 const whatsappNumber = import.meta.env.PUBLIC_WHATSAPP_NUMBER || '60182035828';
 const whatsappLink = `https://wa.me/${whatsappNumber}?text=Hi%20D'Timer%20Cafe!%20I'd%20like%20to%20ask%20about...`;
 ---
 
-<a href="#main-content" class="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-[60] bg-sambal-red text-bone-white px-4 py-2 rounded-lg font-medium">
+<a href="#main-content" class="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-[60] bg-sambal-red text-warm-black px-4 py-2 font-body font-bold tracking-[0.2em] uppercase text-xs">
   Skip to content
 </a>
 
-<header id="navbar" class="fixed top-0 left-0 right-0 z-50 transition-all duration-250">
+<header id="navbar" class="fixed top-0 left-0 right-0 z-50 transition-all duration-200 bg-warm-black border-b border-coconut-cream/15">
   <Container>
-    <nav class="flex items-center justify-between h-16 sm:h-20">
-      <!-- Logo -->
-      <a href="/" class="font-display text-xl sm:text-2xl font-bold text-warm-black hover:text-sambal-red transition-colors">
-        D'Timer
+    <nav class="flex items-center justify-between h-14 sm:h-16">
+      <!-- Logo lockup -->
+      <a href="/" class="group inline-flex items-center gap-3">
+        <span class="relative inline-block w-8 h-8 border border-sambal-red">
+          <span class="absolute inset-0 m-auto w-1.5 h-1.5 bg-sambal-red rounded-full"></span>
+          <span class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-0.5 h-3 bg-bone-white origin-bottom rotate-[35deg] tick-second"></span>
+        </span>
+        <span class="font-display text-lg sm:text-xl text-bone-white group-hover:text-sambal-red transition-colors tracking-[0.05em]">
+          D'TIMER
+        </span>
+        <span class="hidden sm:inline-block font-body text-[0.65rem] tracking-[0.3em] uppercase text-coconut-cream/50 border-l border-coconut-cream/20 pl-3 ml-1">
+          EST. 2008
+        </span>
       </a>
 
       <!-- Desktop Nav -->
-      <div class="hidden md:flex items-center gap-8">
+      <div class="hidden md:flex items-center gap-1">
         {navLinks.map(link => (
           <a
             href={link.href}
-            class="text-sm font-medium text-tea-brown hover:text-sambal-red transition-colors duration-300 ease-out relative group"
+            class="group relative px-4 py-2 font-body text-[0.7rem] tracking-[0.3em] uppercase text-coconut-cream/80 hover:text-sambal-red transition-colors"
           >
-            {link.label}
-            <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-sambal-red transition-[width] duration-500 ease-[cubic-bezier(0.25,0.46,0.45,0.94)] group-hover:w-full" />
+            <span class="text-sambal-red mr-2 tabular-nums">{link.code}</span>
+            <span>{link.label}</span>
+            <span class="absolute left-3 right-3 -bottom-px h-px bg-sambal-red origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-200" />
           </a>
         ))}
         <a
           href={whatsappLink}
           target="_blank"
           rel="noopener noreferrer"
-          class="inline-flex items-center gap-2 bg-sambal-red text-bone-white px-5 py-2.5 rounded-lg text-sm font-medium hover:bg-charred-brown hover:-translate-y-0.5 hover:shadow-md transition-all ease-out duration-300"
+          class="ml-3 inline-flex items-center gap-2 bg-sambal-red text-warm-black px-4 py-2.5 font-body text-[0.7rem] tracking-[0.25em] uppercase font-bold border border-sambal-red hover:bg-warm-black hover:text-sambal-red transition-colors"
         >
-          <Phone size={16} />
+          <Phone size={13} />
           <span>WhatsApp</span>
         </a>
       </div>
@@ -49,13 +59,13 @@ const whatsappLink = `https://wa.me/${whatsappNumber}?text=Hi%20D'Timer%20Cafe!%
       <!-- Mobile Menu Button -->
       <button
         id="mobile-menu-btn"
-        class="md:hidden p-2 text-warm-black hover:text-sambal-red transition-colors"
+        class="md:hidden p-2 text-bone-white hover:text-sambal-red transition-colors border border-coconut-cream/20"
         aria-label="Toggle menu"
         aria-expanded="false"
         aria-controls="mobile-menu"
       >
-        <Menu id="menu-icon" size={24} />
-        <X id="close-icon" size={24} class="hidden" />
+        <Menu id="menu-icon" size={20} />
+        <X id="close-icon" size={20} class="hidden" />
       </button>
     </nav>
   </Container>
@@ -63,18 +73,19 @@ const whatsappLink = `https://wa.me/${whatsappNumber}?text=Hi%20D'Timer%20Cafe!%
   <!-- Mobile Menu -->
   <div
     id="mobile-menu"
-    class="md:hidden fixed inset-x-0 top-16 bg-warm-sand/95 backdrop-blur-md border-b border-coconut-cream shadow-lg transform -translate-y-[120%] transition-transform duration-500 ease-[cubic-bezier(0.32,0.72,0,1)]"
+    class="md:hidden fixed inset-x-0 top-14 bg-warm-black border-b border-sambal-red/40 transform -translate-y-[120%] transition-transform duration-300 ease-out"
     aria-hidden="true"
   >
     <Container>
-      <div class="py-6 flex flex-col">
+      <div class="py-4 flex flex-col">
         {navLinks.map((link, index) => (
           <a
             href={link.href}
-            class="text-lg font-medium text-warm-black hover:text-sambal-red transition-colors duration-200 py-3 border-b border-coconut-cream/30 last:border-0"
+            class="font-body text-base tracking-[0.2em] uppercase text-bone-white hover:text-sambal-red py-3 border-b border-coconut-cream/10 last:border-0 flex items-center gap-3"
             style={`animation-delay: ${index * 40}ms`}
           >
-            {link.label}
+            <span class="text-sambal-red text-xs tabular-nums">{link.code}</span>
+            <span>{link.label}</span>
           </a>
         ))}
       </div>
@@ -83,29 +94,14 @@ const whatsappLink = `https://wa.me/${whatsappNumber}?text=Hi%20D'Timer%20Cafe!%
 </header>
 
 <!-- Spacer for fixed header -->
-<div class="h-16 sm:h-20"></div>
+<div class="h-14 sm:h-16"></div>
 
 <script>
-  const navbar = document.getElementById('navbar');
   const mobileMenuBtn = document.getElementById('mobile-menu-btn');
   const mobileMenu = document.getElementById('mobile-menu');
   const menuIcon = document.getElementById('menu-icon');
   const closeIcon = document.getElementById('close-icon');
   let isMenuOpen = false;
-
-  // Scroll behavior
-  function handleScroll() {
-    if (window.scrollY > 20) {
-      navbar?.classList.add('bg-warm-sand/90', 'backdrop-blur-md', 'shadow-sm');
-      navbar?.classList.remove('bg-transparent');
-    } else {
-      navbar?.classList.remove('bg-warm-sand/90', 'backdrop-blur-md', 'shadow-sm');
-      navbar?.classList.add('bg-transparent');
-    }
-  }
-
-  window.addEventListener('scroll', handleScroll, { passive: true });
-  handleScroll();
 
   // Mobile menu toggle
   mobileMenuBtn?.addEventListener('click', () => {
@@ -117,12 +113,10 @@ const whatsappLink = `https://wa.me/${whatsappNumber}?text=Hi%20D'Timer%20Cafe!%
       mobileMenu?.classList.remove('-translate-y-[120%]');
       menuIcon?.classList.add('hidden');
       closeIcon?.classList.remove('hidden');
-      navbar?.classList.add('bg-warm-sand/95');
     } else {
       mobileMenu?.classList.add('-translate-y-[120%]');
       menuIcon?.classList.remove('hidden');
       closeIcon?.classList.add('hidden');
-      handleScroll();
     }
   });
 
@@ -135,7 +129,6 @@ const whatsappLink = `https://wa.me/${whatsappNumber}?text=Hi%20D'Timer%20Cafe!%
       mobileMenu?.classList.add('-translate-y-[120%]');
       menuIcon?.classList.remove('hidden');
       closeIcon?.classList.add('hidden');
-      handleScroll();
     });
   });
 </script>

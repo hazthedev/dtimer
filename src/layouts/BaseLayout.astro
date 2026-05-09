@@ -1,12 +1,5 @@
 ---
 import '../styles/global.css';
-import '@fontsource/fraunces/400.css';
-import '@fontsource/fraunces/600.css';
-import '@fontsource/fraunces/700.css';
-import '@fontsource/inter/400.css';
-import '@fontsource/inter/500.css';
-import '@fontsource/inter/700.css';
-import '@fontsource/caveat/400.css';
 
 interface Props {
   title: string;
@@ -49,7 +42,14 @@ const siteUrl = 'https://dtimercafe.my';
 
     <!-- Preconnect for performance -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link rel="preconnect" href="https://www.google.com" />
+
+    <!-- Brutalist chronograph type stack -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Major+Mono+Display&family=JetBrains+Mono:wght@300;400;500;700;800&family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Bungee+Mono&display=swap" />
+
+    <!-- anime.js for chronograph dial / data-flow draws -->
+    <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.2/lib/anime.min.js" is:inline></script>
 
     <!-- Favicon -->
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
